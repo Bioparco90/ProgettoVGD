@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform player;
+    /*public Transform player;
     public float sensitivity = 2.0f;
     private float FOV;
 
@@ -28,5 +28,5 @@ public class CameraController : MonoBehaviour
 
         transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
         player.Rotate(Vector3.up * mouseX);
-    }
+    }*/
 }

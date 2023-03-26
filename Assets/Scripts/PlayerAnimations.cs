@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerAnimations : MonoBehaviour
 {
-    Animator animator;
+    /*Animator animator;
     void Start()
     {
         animator=GetComponent<Animator>();
@@ -43,5 +43,5 @@ public class PlayerAnimations : MonoBehaviour
         {
             animator.SetBool("isJumping", false);
         }
-    }
+    }*/
 }
