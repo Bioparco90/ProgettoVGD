@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
+    RaycastHit hitPoint;
     void Start()
     {
         
@@ -12,10 +13,19 @@ public class GunController : MonoBehaviour
     
     void FixedUpdate()
     {
-        RaycastHit hitPoint;
-        bool rayCastRes = Physics.Raycast(transform.position, transform.forward,out(hitPoint), Mathf.Infinity);
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            shoot();
+        }
+    }
+
+    private void shoot()
+    {
+        bool rayCastRes = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out (hitPoint), Mathf.Infinity);
 
         if (rayCastRes)
-            Debug.DrawLine(transform.position, transform.forward, Color.red);
+        {
+            print(hitPoint.collider.gameObject.tag);
+        }
     }
 }
