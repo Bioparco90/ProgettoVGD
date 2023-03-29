@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private float jumpSpeed = 7.0f;
     private const float gravity = 9.81f;
     public float lookSpeed = 2.0f;
-    public float lookXLimit = 45.0f; //Angolo limite oltre il quale la camera non può andare
+    public float lookXLimit = 45.0f; //Angolo limite oltre il quale la camera non puï¿½ andare
 
     float rotationX = 0;
 
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
         bool isRunning = Input.GetKey(KeyCode.LeftShift); //Controllo se il player sta premendo shift per correre
 
-        //Assegno la velocità di movimento corretta a seconda che il player stia correndo o camminando
+        //Assegno la velocitï¿½ di movimento corretta a seconda che il player stia correndo o camminando
         float curSpeedX = canMove ? (isRunning ? runningSpeed : walkingSpeed) * verticalMovement : 0;
         float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * horizontalMovement : 0;
         float movementDirectionY = moveDirection.y;
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
             moveDirection.y = movementDirectionY;
 
 
-        //Se il player non è a terra devo applicargli la gravità
+        //Se il player non ï¿½ a terra devo applicargli la gravitï¿½
         if (!ch.isGrounded)
             moveDirection.y -= gravity * Time.deltaTime;
 
