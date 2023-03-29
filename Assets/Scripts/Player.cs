@@ -8,8 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] public Camera playerCamera;
     public CharacterController ch;
-    internal Vector3 moveDirection = Vector3.zero;
-
+    internal Vector3 moveDirection = Vector3.zero;      
     private float walkingSpeed = 5.0f;
     private float runningSpeed = 15.0f;
     private float jumpSpeed = 7.0f;

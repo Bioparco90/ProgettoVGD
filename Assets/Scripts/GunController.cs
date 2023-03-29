@@ -8,7 +8,7 @@ public class GunController : MonoBehaviour
     RaycastHit hitPoint;
     void Start()
     {
-        
+
     }
     
     void FixedUpdate()
