@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
+    Vector3 gunIdlePosition=new Vector3 (-0.8f,0.5f,-4f);
+    public Transform gun;
     RaycastHit hitPoint;
     void Start()
     {
-
+        gun.localPosition=gunIdlePosition;
     }
     
     void FixedUpdate()
@@ -16,6 +18,7 @@ public class GunController : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0))
         {
             shoot();
+        
         }
     }
 
