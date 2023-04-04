@@ -1348,7 +1348,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 531eaa18d2190a34584964afe6d27374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomSpeed: 2
   bulletSpawn: {fileID: 401321316}
   bulletPrefab: {fileID: 644587947954621399, guid: 3537d89e98b78f242aa54ee0a4a74bfe, type: 3}
   bulletRB: {fileID: 539661089382922218, guid: 3537d89e98b78f242aa54ee0a4a74bfe, type: 3}

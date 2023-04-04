@@ -9,7 +9,8 @@ public class GunController : MonoBehaviour
     bool canShoot=true;
     int aimingFOV=50;
     int idleFOV=80;
-    public float zoomSpeed=2;
+    private float zoomSpeed=2;
+    private float bulletSpeed=2000.0f;
     float shootingTimer; //Tiene conto di quanto tempo è passato dall'ultimo sparo
     float fireRate; //Contiene il tempo che deve passare tra uno sparo e l'altro
 
@@ -26,10 +27,8 @@ public class GunController : MonoBehaviour
     {
         gun.localPosition=gunIdlePosition;
         bulletSpawn.transform.localPosition=bulletSpwanPosition;
-        bulletRB=bulletPrefab.GetComponent<Rigidbody>();
         fireRate=1.0f;
         shootingTimer=fireRate;
-        
     }
     
     void FixedUpdate()
@@ -70,9 +69,13 @@ public class GunController : MonoBehaviour
 
         if (rayCastRes)
         {
-            print(hitPoint.collider.gameObject.tag);
+            /*print(hitPoint.collider.gameObject.tag);
             Instantiate(bulletPrefab,bulletSpawn.transform);
-            //bulletRB.AddForce(Vector3.forward,ForceMode.Impulse);
+            bulletRB.AddForce(bulletSpawn.forward*bulletSpeed, ForceMode.Impulse);*/
+
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.transform);
+            Rigidbody bulletRB = bullet.GetComponent<Rigidbody>();
+            bulletRB.velocity = Camera.main.transform.forward * bulletSpeed *Time.deltaTime;
         }
     }
 }
