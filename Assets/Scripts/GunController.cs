@@ -14,14 +14,16 @@ public class GunController : MonoBehaviour
     float shootingTimer; //Tiene conto di quanto tempo è passato dall'ultimo sparo
     float fireRate; //Contiene il tempo che deve passare tra uno sparo e l'altro
 
+    GameObject bullet;
     public Transform bulletSpawn;
     public GameObject bulletPrefab;
     public Rigidbody bulletRB;
     public Transform gun;
+    public GameObject crossHair;
     RaycastHit hitPoint;
 
     private Vector3 gunIdlePosition=new Vector3 (-0.8f,0.5f,-4f);
-    private Vector3 gunAimPosition=new Vector3 (-2f, 0.5f,-4f);
+    private Vector3 gunAimPosition=new Vector3 (-2f, 0.75f,-4f);
     private Vector3 bulletSpwanPosition= new Vector3 (0.5f,-0.822f,1.7f);
     void Start()
     {
@@ -50,6 +52,7 @@ public class GunController : MonoBehaviour
         //Cambia la posizione della pistola (mettendola al centro) e aumenta lo zoom della camera
         if(!isAiming && Input.GetKeyDown(KeyCode.Mouse1)){
             isAiming=true;
+            crossHair.SetActive(false);
             gun.localPosition=gunAimPosition;
             Camera.main.fieldOfView=Mathf.MoveTowards(aimingFOV, idleFOV, zoomSpeed * Time.deltaTime); //Diminuisco il FOV della camera per zoomare
         }
@@ -58,6 +61,7 @@ public class GunController : MonoBehaviour
         //Rimette la pistola nella posizione iniziale e ripristina il FOV 
         if(isAiming && Input.GetKeyUp(KeyCode.Mouse1)){
             isAiming=false;
+            crossHair.SetActive(true);
             gun.localPosition=gunIdlePosition;
             Camera.main.fieldOfView=Mathf.MoveTowards(idleFOV, aimingFOV, zoomSpeed * Time.deltaTime);
         }
@@ -69,13 +73,17 @@ public class GunController : MonoBehaviour
 
         if (rayCastRes)
         {
-            /*print(hitPoint.collider.gameObject.tag);
-            Instantiate(bulletPrefab,bulletSpawn.transform);
+            print(hitPoint.collider.gameObject.tag);
+            
+            /*Instantiate(bulletPrefab,bulletSpawn.transform);
             bulletRB.AddForce(bulletSpawn.forward*bulletSpeed, ForceMode.Impulse);*/
 
-            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.transform);
-            Rigidbody bulletRB = bullet.GetComponent<Rigidbody>();
+            bullet = Instantiate(bulletPrefab, bulletSpawn.transform);
+            bulletRB = bullet.GetComponent<Rigidbody>();
             bulletRB.velocity = Camera.main.transform.forward * bulletSpeed *Time.deltaTime;
         }
     }
+
 }
+
+
