@@ -388,10 +388,45 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5359605847225166723, guid: c9c15480150b39f4fb9f56b207eb57cf, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 266199998250308269, guid: c9c15480150b39f4fb9f56b207eb57cf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 401321316}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9c15480150b39f4fb9f56b207eb57cf, type: 3}
+--- !u!1 &401321315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 401321316}
+  m_Layer: 0
+  m_Name: BulletSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &401321316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401321315}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.4999, y: -0.6126, z: 1.6737}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 266199997402167831}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &431002106
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,6 +1350,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoomSpeed: 2
   gun: {fileID: 1910745067}
+  bulletSpawn: {fileID: 401321316}
+  bulletPrefab: {fileID: 0}
 --- !u!1 &2022886029
 GameObject:
   m_ObjectHideFlags: 0
