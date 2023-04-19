@@ -22,18 +22,47 @@ public class GunManager : MonoBehaviour
     Weapon shotGun;
 
     List<Weapon> weaponList= new List<Weapon>(); //Lista di tutte le armi impugnate dal player
-    int selectedWeapon;
+    int selectedWeapon; //Variabile che contiene l'indice dell'arma selezionata in quel momento
     private void Start() {
+        /*Creazione delle singole armi*/
         gun=new Weapon (gunIdlePosition,gunAimPosition,gunFireRate,20);
         machineGun=new Weapon(machineGunIdlePosition, machineGunAimPosition,machineGunFireRate,10);
         shotGun=new Weapon (shotGunIdlePosition,shotGunAimPosition,shotGunFireRate,20);
+
+        /*Aggiunta delle armi alla lista*/
         weaponList.Add(gun);
         weaponList.Add(machineGun);
         weaponList.Add(shotGun);
-        selectWeapon();
+        selectedWeapon=0;
+        selectWeapon(); //Di default viene selezionata la prima arma della lista
     }
 
     private void Update() {
+        weaponSwitch();
+    }
+
+    /*Metodo che seleziona l'arma corretta*/
+    void selectWeapon(){
+        int i=0;
+        /*Itero per ogni elemento figlio del transform a cui verrà attaccato lo script
+          quando trovo l'arma che sto cercando (indicata dalla variabile selectedWeapon) 
+          attivo il GameObject dell'arma e imposto la posizione dell'arma nella scena
+          
+          Tutte le armi che non corrispondono a quella selezionata vengonon disattivate*/
+        foreach(Transform weapon in transform){ 
+            if(i==selectedWeapon){              
+                weapon.gameObject.SetActive(true);
+                transform.localPosition=weaponList[i].idlePosition;
+            }
+            else{
+                weapon.gameObject.SetActive(false);
+            }
+            i++;
+        }
+    }
+
+    /*Metodo che switcha le armi tramite lo scroll della rotella del mouse*/
+    void weaponSwitch(){
         int previousSelectedWeapon=selectedWeapon;
         if(Input.GetAxis("Mouse ScrollWheel") >=0f){
             if(selectedWeapon>=transform.childCount-1)
@@ -50,19 +79,5 @@ public class GunManager : MonoBehaviour
         }
         if(selectedWeapon!=previousSelectedWeapon)
             selectWeapon();
-    }
-
-    void selectWeapon(){
-        int i=0;
-        foreach(Transform weapon in transform){
-            if(i==selectedWeapon){
-                weapon.gameObject.SetActive(true);
-                transform.localPosition=weaponList[i].idlePosition;
-            }
-            else{
-                weapon.gameObject.SetActive(false);
-            }
-            i++;
-        }
     }
 }
