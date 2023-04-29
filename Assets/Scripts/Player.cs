@@ -7,9 +7,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public CharacterController ch;
-    private float walkingSpeed = 7.0f;
-    private float runningSpeed = 15.0f;
-    private float jumpSpeed = 10.0f;
+    private float walkingSpeed = 50.0f;
+    private float runningSpeed = 70.0f;
+    private float jumpSpeed = 7.0f;
     private const float gravity = 9.81f;
     Vector3 move;
 
@@ -36,9 +36,9 @@ public class PlayerController : MonoBehaviour
         move = (forward * curSpeedX) + (right * curSpeedY);
         
 
-        if (Input.GetButton("Jump") && ch.isGrounded)
+        if (Input.GetButton("Jump") && ch.isGrounded){
             move.y = jumpSpeed;
-
+        }
         else
             move.y = movementDirectionY;
 
