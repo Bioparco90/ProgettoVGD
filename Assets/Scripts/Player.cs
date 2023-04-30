@@ -6,49 +6,135 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public CharacterController ch;
-    private float walkingSpeed = 50.0f;
-    private float runningSpeed = 70.0f;
-    private float jumpSpeed = 7.0f;
-    private const float gravity = 9.81f;
-    Vector3 move;
+    public float dashForce = 1000;
+    public float moveSpeed = 15;
+    public float groundDrag = 4;
+    public float jumpForce = 7;
+    public float jumpCooldown = 1;
+    public float dashCooldown = 3;
+    public float airMultiplier = 1;
+    bool readyToJump;
+    bool readyToDash;
 
-    void Start()
+    [HideInInspector] public float walkSpeed;
+    [HideInInspector] public float sprintSpeed;
+
+    public float playerHeight = 2f;
+    public LayerMask whatIsGround;
+    bool grounded;
+
+    public Transform orientation;
+
+    float horizontalInput;
+    float verticalInput;
+
+    Vector3 moveDirection;
+
+    Rigidbody rb;
+
+    private void Start()
     {
-        ch = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
+
+        readyToJump = true;
+        readyToDash = true;
     }
 
-    void Update()
+    private void Update()
     {
-        //Salvo la direzione verso il quale il player sta guardando
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        Vector3 right = transform.TransformDirection(Vector3.right);
+        //Con un raycast controllo se il player sta toccando il layer del terreno
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
-        float horizontalMovement = Input.GetAxis("Horizontal");
-        float verticalMovement = Input.GetAxis("Vertical");
+        MyInput();
+        SpeedControl();
 
-        bool isRunning = Input.GetKey(KeyCode.LeftShift); //Controllo se il player sta premendo shift per correre
-
-        //Assegno la velocità di movimento corretta a seconda che il player stia correndo o camminando
-        float curSpeedX = (isRunning ? runningSpeed : walkingSpeed) * verticalMovement;
-        float curSpeedY = (isRunning ? runningSpeed : walkingSpeed) * horizontalMovement;
-        float movementDirectionY = move.y;
-        move = (forward * curSpeedX) + (right * curSpeedY);
-        
-
-        if (Input.GetButton("Jump") && ch.isGrounded){
-            move.y = jumpSpeed;
-        }
+        //Gestione dell'attrito
+        if (grounded)
+            rb.drag = groundDrag;
         else
-            move.y = movementDirectionY;
+            rb.drag = 0;
+    }
+
+    private void FixedUpdate()
+    {
+        MovePlayer();
+    }
+
+    private void MyInput()
+    {
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
 
 
-        //Se il player non è a terra gli applico la gravità
-        if (!ch.isGrounded)
-            move.y -= gravity * Time.deltaTime;
+        if (Input.GetKey(KeyCode.Space) && readyToJump && grounded)
+        {
+            readyToJump = false;
 
-        //Muovo il player
-        ch.Move(move * Time.deltaTime);
+            Jump();
+
+            Invoke(nameof(ResetJump), jumpCooldown); //Chiama la funzione resetJump dopo aver aspettato il cooldown del salto
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && readyToDash)
+        {
+            print("sto dashando");
+            readyToDash = false;
+
+            Dash();
+
+            Invoke(nameof(ResetDash), dashCooldown);
+        }
+    }
+
+    private void MovePlayer()
+    {
+        //Calcola la direzione del movimento
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        //Controlla se il player è a terra e lo fa muovere di conseguenza
+        if (grounded)
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+
+        //Controlla se il player è in aria e lo fa muovere di conseguenza        
+        else if (!grounded)
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+    }
+
+    private void SpeedControl()
+    {
+        //Prendo la velocità attuale del player
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        //Se è maggiore della velocotà di movimento la resetto al valore massimo
+        if (flatVel.magnitude > moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
+    }
+
+    private void Jump()
+    {
+
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+    private void ResetJump()
+    {
+        readyToJump = true;
+    }
+
+    private void ResetDash()
+    {
+        readyToDash = true;
+    }
+    private void Dash()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        rb.AddForce(orientation.forward * dashForce, ForceMode.Impulse);
     }
 }
 

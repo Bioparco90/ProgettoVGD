@@ -6,14 +6,14 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Transform player;
-    public float mouseSensitivity=50.0f;
+    public float mouseSensitivity = 50.0f;
     private float xRotation = 0f;
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        Camera.main.fieldOfView=80;
+        Camera.main.fieldOfView = 80;
     }
 
     void Update()
@@ -23,8 +23,8 @@ public class CameraController : MonoBehaviour
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90, 90);
-        
-        transform.localRotation =Quaternion.Euler(xRotation, 0f,0f);
+
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         player.Rotate(Vector3.up * mouseX);
     }
 }
