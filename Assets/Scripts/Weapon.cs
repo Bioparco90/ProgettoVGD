@@ -15,9 +15,9 @@ public class Weapon
     public int maxClipAmmo; //Munizioni massime per caricatore
     public int currentClipAmmo; //Munizioni attuali nel caricatore
     public int maxAmmo; //Munizioni massime dell'arma
-    //public float maxDistance;
-    //private int munizioni;
-    public Weapon(Vector3 idlePosition, Vector3 aimPosition, float fireRate, float damage, bool isAutomatic, ParticleSystem muzzleFlash, AudioSource shootSound, int maxAmmo, int maxClipAmmo)
+    public float reloadTime;
+
+    public Weapon(Vector3 idlePosition, Vector3 aimPosition, float fireRate, float damage, bool isAutomatic, ParticleSystem muzzleFlash, AudioSource shootSound, int maxAmmo, int maxClipAmmo, float reloadTime)
     {
         this.idlePosition = idlePosition;
         this.aimPosition = aimPosition;
@@ -28,5 +28,6 @@ public class Weapon
         this.shootSound=shootSound;
         this.maxAmmo=maxAmmo;
         this.maxClipAmmo=maxClipAmmo;
+        this.reloadTime=reloadTime;
     }
 }
