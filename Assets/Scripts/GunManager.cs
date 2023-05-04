@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GunManager : MonoBehaviour
-{
+{   
     RaycastHit hitPoint;
     public Camera playerCamera;
     /*Creo delle variabili che contengono i valori da passare al costruttore della classe weapon quando 
@@ -12,18 +12,29 @@ public class GunManager : MonoBehaviour
     float gunDamage = 10.0f;
     Vector3 gunIdlePosition = new Vector3(1f, -0.4f, 0.5f);
     Vector3 gunAimPosition = new Vector3(0f, -0.25f, 1f);
+    public ParticleSystem gunMuzzleFlash;
+    public AudioSource gunShootSound;
+    int maxGunAmmo=150;
+    int maxClipAmmo=16;
     Weapon gun;
 
     float machineGunFireRate = 0.1f; //Contiene il tempo che deve passare tra uno sparo e l'altro
     float machineGunDamage = 7.0f;
     Vector3 machineGunIdlePosition = new Vector3(1f, -0.4f, 0.5f);
     Vector3 machineGunAimPosition = new Vector3(0f, -0.5f, 0.8f);
+    public ParticleSystem machineGunMuzzleFlash;
+    public AudioSource machineGunShootSound;
+    
+
     Weapon machineGun;
 
     float shotGunFireRate = 1.5f; //Contiene il tempo che deve passare tra uno sparo e l'altro
     Vector3 shotGunIdlePosition = new Vector3(0.3f, -0.2f, 0.5f);
     Vector3 shotGunAimPosition = new Vector3(0f, -0.2f, 0.3f);
     float shotGunDamage = 50.0f;
+    public ParticleSystem shotGunMuzzleFlash;
+    public AudioSource shotGunShootSound;
+
     Weapon shotGun;
 
     List<Weapon> weaponList = new List<Weapon>(); //Lista di tutte le armi impugnate dal player
@@ -34,14 +45,15 @@ public class GunManager : MonoBehaviour
     private void Start()
     {
         /*Creazione delle singole armi*/
-        gun = new Weapon(gunIdlePosition, gunAimPosition, gunFireRate, gunDamage, false);
-        machineGun = new Weapon(machineGunIdlePosition, machineGunAimPosition, machineGunFireRate, machineGunDamage, true);
-        shotGun = new Weapon(shotGunIdlePosition, shotGunAimPosition, shotGunFireRate, shotGunDamage, false);
+        gun = new Weapon(gunIdlePosition, gunAimPosition, gunFireRate, gunDamage, false, gunMuzzleFlash, gunShootSound,maxGunAmmo, maxClipAmmo);
+        //machineGun = new Weapon(machineGunIdlePosition, machineGunAimPosition, machineGunFireRate, machineGunDamage, true, machineGunMuzzleFlash, machineGunShootSound);
+        //shotGun = new Weapon(shotGunIdlePosition, shotGunAimPosition, shotGunFireRate, shotGunDamage, false, shotGunMuzzleFlash, shotGunShootSound);
+
 
         /*Aggiunta delle armi alla lista*/
         weaponList.Add(gun);
-        weaponList.Add(machineGun);
-        weaponList.Add(shotGun);
+        //weaponList.Add(machineGun);
+        //weaponList.Add(shotGun);
         selectedWeapon = 0;
         selectWeapon(); //Di default viene selezionata la prima arma della lista
 
@@ -141,8 +153,10 @@ public class GunManager : MonoBehaviour
         bool rayCastRes = Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitPoint, Mathf.Infinity);
         if (rayCastRes)
         {
-            /*print(hitPoint.transform.tag);
-            print(activeWeapon.damage);*/
+            activeWeapon.shootSound.Play();
+            activeWeapon.muzzleFlash.Play();
+            print(hitPoint.transform.tag);
+            print(activeWeapon.damage);
         }
     }
 }
