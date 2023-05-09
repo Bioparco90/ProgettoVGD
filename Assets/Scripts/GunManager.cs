@@ -6,7 +6,6 @@ using TMPro;
 public class GunManager : MonoBehaviour
 {   bool isReloading=false;
     public TextMeshProUGUI ammmoCount;
-    RaycastHit hitPoint;
     public Camera playerCamera;
     /*Creo delle variabili che contengono i valori da passare al costruttore della classe weapon quando 
       istanzierò gli oggetti per ogni arma*/
