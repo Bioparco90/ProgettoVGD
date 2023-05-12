@@ -115,6 +115,10 @@ public class GunManager : MonoBehaviour
             {
                 weapon.gameObject.SetActive(true);
                 transform.localPosition = weaponList[i].idlePosition;
+                /* 
+                 * TODO:
+                 * inserire qui la visualizzazione a schermo dell'icona arma se possibile, oppure anche solo il nome 
+                 */ 
             }
             else
             {
