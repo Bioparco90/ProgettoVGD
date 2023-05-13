@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 
 public class GunManager : MonoBehaviour
-{   bool isReloading=false;
+{
     public TextMeshProUGUI ammmoCount;
     public Camera playerCamera;
     /*Creo delle variabili che contengono i valori da passare al costruttore della classe weapon quando 
@@ -47,18 +47,17 @@ public class GunManager : MonoBehaviour
 
     Weapon shotGun;
 
-    List<Weapon> weaponList = new List<Weapon>(); //Lista di tutte le armi impugnate dal player
-
+    List<Weapon> weaponList = new List<Weapon>(); //Lista di tutte le armi impugnate dal player*/
     float timeSinceLastShoot = 0; //Contiene il tempo trascorso dall'ulitmo sparo
 
     int selectedWeapon; //Variabile che contiene l'indice dell'arma selezionata in quel momento
     private void Start()
-    {
+    {   
         /*Creazione delle singole armi*/
-        gun = new Weapon(gunIdlePosition, gunAimPosition, gunFireRate, gunDamage, false, gunMuzzleFlash, gunShootSound,maxGunAmmo, maxGunClipAmmo, gunReloadTime);
-        machineGun = new Weapon(machineGunIdlePosition, machineGunAimPosition, machineGunFireRate, machineGunDamage, true, machineGunMuzzleFlash, machineGunShootSound, maxMachineGunAmmo, maxMachineGunClipAmmo , machineGunReloadTime);
-        shotGun = new Weapon(shotGunIdlePosition, shotGunAimPosition, shotGunFireRate, shotGunDamage, false, shotGunMuzzleFlash, shotGunShootSound,maxShotGunAmmo,maxShotGunClipAmmo,shotgunReloadTime);
-
+        gun = new Weapon(gunIdlePosition, gunAimPosition, gunFireRate, gunDamage, false, gunMuzzleFlash, gunShootSound,reloadSound,maxGunAmmo, maxGunClipAmmo, gunReloadTime);
+        machineGun = new Weapon(machineGunIdlePosition, machineGunAimPosition, machineGunFireRate, machineGunDamage, true, machineGunMuzzleFlash, machineGunShootSound, reloadSound,maxMachineGunAmmo, maxMachineGunClipAmmo , machineGunReloadTime);
+        shotGun = new Weapon(shotGunIdlePosition, shotGunAimPosition, shotGunFireRate, shotGunDamage, false, shotGunMuzzleFlash, shotGunShootSound,reloadSound,maxShotGunAmmo,maxShotGunClipAmmo,shotgunReloadTime);
+        
         
         /*Aggiunta delle armi alla lista*/
         weaponList.Add(gun);
@@ -68,32 +67,39 @@ public class GunManager : MonoBehaviour
             weapon.currentClipAmmo=weapon.maxClipAmmo;
         }
         
+        
 
         selectedWeapon = 0;
         selectWeapon(); //Di default viene selezionata la prima arma della lista
         ammmoCount.SetText(weaponList[selectedWeapon].currentClipAmmo + "/" + weaponList[selectedWeapon].maxAmmo);
 
     }
-
+    
     private void Update()
     {
         Weapon activeWeapon=weaponList[selectedWeapon];
         timeSinceLastShoot += Time.deltaTime;
 
         weaponSwitch();
-        aim(activeWeapon, playerCamera);
 
-        if (Input.GetKey(KeyCode.Mouse0) && timeSinceLastShoot >= activeWeapon.fireRate && !isReloading && activeWeapon.currentClipAmmo>0 )
+        if (Input.GetKey(KeyCode.Mouse0) && timeSinceLastShoot >= activeWeapon.fireRate && !activeWeapon.isReloading)
         {
-            if(activeWeapon.currentClipAmmo<=0){
-                reload(activeWeapon);
-            }
-            shoot(activeWeapon, playerCamera);
+            activeWeapon.shoot(playerCamera);
             timeSinceLastShoot = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !activeWeapon.isAiming)
+        {
+            activeWeapon.startAim(this.gameObject,playerCamera);
+        }
+
+        if (Input.GetKeyUp(KeyCode.Mouse1) && activeWeapon.isAiming)
+        {
+            activeWeapon.stopAim(this.gameObject,playerCamera);
         }
     
         if(Input.GetKey(KeyCode.R) && activeWeapon.currentClipAmmo<activeWeapon.maxClipAmmo && activeWeapon.maxAmmo>0){
-            StartCoroutine(reload(activeWeapon));
+            StartCoroutine(activeWeapon.reload());
         }
         ammmoCount.SetText(activeWeapon.currentClipAmmo + "/" + activeWeapon.maxAmmo);
 
@@ -156,55 +162,5 @@ public class GunManager : MonoBehaviour
         }
 
     }
-
-    void aim(Weapon activeWeapon, Camera playerCamera)
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !activeWeapon.isAiming)
-        {
-            activeWeapon.isAiming = true;
-            transform.localPosition = activeWeapon.aimPosition;
-            playerCamera.fieldOfView = 50;
-        }
-
-        if (Input.GetKeyUp(KeyCode.Mouse1) && activeWeapon.isAiming)
-        {
-            activeWeapon.isAiming = false;
-            transform.localPosition = activeWeapon.idlePosition;
-            playerCamera.fieldOfView = 80;
-        }
-    }
-
-    void shoot(Weapon activeWeapon, Camera playerCamera)
-    {
-        RaycastHit hitPoint;
-        bool rayCastRes = Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitPoint, Mathf.Infinity);
-        if (rayCastRes)
-        {
-            activeWeapon.currentClipAmmo--;
-            activeWeapon.shootSound.Play();
-            activeWeapon.muzzleFlash.Play();
-            /*print(hitPoint.transform.tag);
-            print(activeWeapon.damage);*/
-        }
-    }
-
-    IEnumerator reload(Weapon activeWeapon){
-        isReloading=true;
-        //Se il caricatore ha almeno una munizione in meno rispetto al massimo trasportabile
-        if(activeWeapon.currentClipAmmo<activeWeapon.maxClipAmmo && activeWeapon.maxAmmo>0){
-            if(activeWeapon.maxAmmo<activeWeapon.maxClipAmmo-activeWeapon.currentClipAmmo){
-                activeWeapon.currentClipAmmo=activeWeapon.maxAmmo;
-                activeWeapon.maxAmmo=0;
-            }
-            else{
-                activeWeapon.maxAmmo-=activeWeapon.maxClipAmmo-activeWeapon.currentClipAmmo; //Aggiorno la quantità di munizioni massime
-                activeWeapon.currentClipAmmo=activeWeapon.maxClipAmmo; //Aggiorno la quantità di munizioni nel caricatore
-            }
-            
-        }   
-        reloadSound.Play();
-        yield return new WaitForSeconds(activeWeapon.reloadTime);
-        isReloading=false;
-        
-    }
+    
 }
