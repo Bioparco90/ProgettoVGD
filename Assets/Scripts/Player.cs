@@ -6,20 +6,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float dashForce = 1000;
-    public float moveSpeed = 15;
-    public float groundDrag = 4;
-    public float jumpForce = 7;
-    public float jumpCooldown = 1;
-    public float dashCooldown = 3;
-    public float airMultiplier = 1;
+    public float dashForce; //Froza con cui il player fa il dash
+    public float moveSpeed; //Massima velocità di movimento
+    public float groundDrag; //Attrito col terreno
+    public float jumpForce; //Froza con cui il player salta
+    public float jumpCooldown; //Cooldown in secondi del salto
+    public float dashCooldown; //Cooldown in secondi del dash
+    public float airMultiplier; //Attrito con l'aria
     bool readyToJump;
     bool readyToDash;
 
     [HideInInspector] public float walkSpeed;
     [HideInInspector] public float sprintSpeed;
 
-    public float playerHeight = 2f;
+    public float playerHeight;
     public LayerMask whatIsGround;
     bool grounded;
 
@@ -34,6 +34,15 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        dashForce = 1000;
+        moveSpeed = 15;
+        groundDrag = 4;
+        jumpForce = 7;
+        jumpCooldown = 1;
+        dashCooldown = 3;
+        airMultiplier = 1;
+        playerHeight = 2f;
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
