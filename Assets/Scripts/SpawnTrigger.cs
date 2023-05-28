@@ -5,35 +5,37 @@ using UnityEngine;
 public class SpawnTrigger : MonoBehaviour
 {
     bool canSpawn;
+    bool hasSpawned;
     List<Transform> spawnPointList=new List<Transform>();
     public GameObject enemyToSpawn;
 
     private void Start() {
+        hasSpawned=false;
         foreach(Transform t in transform){
             spawnPointList.Add(t);
         }
+        print("Primo spawn: " + spawnPointList[0].transform.localPosition);
+        print("Secondo spawn: " + spawnPointList[1].transform.localPosition);
     }
     private void Update() {
         int i=0;
-        //print("canSpawn value: " + canSpawn);
-        if(canSpawn){
-            Instantiate(enemyToSpawn, spawnPointList[0].transform,true);
-            /*foreach(Transform s in spawnPointList){
-                
+        if(canSpawn && !hasSpawned){
+            foreach(Transform s in spawnPointList){
+                GameObject spawnedEnemy=Instantiate(enemyToSpawn, s.transform,true);
+                spawnedEnemy.transform.localPosition=spawnPointList[i].transform.localPosition;
                 i++;
-            }*/
+            }
+            hasSpawned=true;
         }
     }
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag=="PlayerCollider"){
-            print("STO COLLIDENDO");
             canSpawn=true;    
         }
     }
     private void OnTriggerExit(Collider other) {
         if(other.gameObject.tag=="PlayerCollider"){
-            print("NON STO COLLIDENDO MANNAGGIA A DIO");
             canSpawn=false;
         }
     }
