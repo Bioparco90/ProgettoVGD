@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
         rb=GetComponent<Rigidbody>(); 
         speed=10;
         canMove=true;
+        player=GameObject.FindGameObjectWithTag("PlayerCollider");
     }
    
 

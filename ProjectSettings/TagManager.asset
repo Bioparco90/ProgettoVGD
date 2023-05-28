@@ -9,6 +9,7 @@ TagManager:
   - Blue
   - Wall
   - Checkpoints
+  - PlayerCollider
   layers:
   - Default
   - TransparentFX
