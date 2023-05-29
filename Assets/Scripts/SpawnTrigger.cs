@@ -14,8 +14,6 @@ public class SpawnTrigger : MonoBehaviour
         foreach(Transform t in transform){
             spawnPointList.Add(t);
         }
-        print("Primo spawn: " + spawnPointList[0].transform.localPosition);
-        print("Secondo spawn: " + spawnPointList[1].transform.localPosition);
     }
     private void Update() {
         int i=0;
