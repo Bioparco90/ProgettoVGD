@@ -21,7 +21,7 @@ public class PatrolState : StateMachineBehaviour
 
         agent = animator.GetComponent<NavMeshAgent>();
         agent.SetDestination(checkpoints[0].position);
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("PlayerCollider").transform;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

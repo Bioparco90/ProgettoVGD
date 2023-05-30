@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
+
 
 public class PlayerController : MonoBehaviour
 {
+    public int healtPoints;
     public float dashForce; //Froza con cui il player fa il dash
     public float moveSpeed; //Massima velocità di movimento
     public float groundDrag; //Attrito col terreno
@@ -31,9 +34,12 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody rb;
+    public TextMeshProUGUI healtText;
+
 
     private void Start()
     {
+        healtPoints=100;
         dashForce = 1000;
         moveSpeed = 15;
         groundDrag = 4;
@@ -52,6 +58,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        //healtText.SetText("Health: " + healtPoints);
+
         //Con un raycast controllo se il player sta toccando il layer del terreno
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
@@ -85,7 +93,7 @@ public class PlayerController : MonoBehaviour
             Invoke(nameof(ResetJump), jumpCooldown); //Chiama la funzione resetJump dopo aver aspettato il cooldown del salto
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && readyToDash)
+        /*if (Input.GetKeyDown(KeyCode.LeftShift) && readyToDash)
         {
             print("sto dashando");
             readyToDash = false;
@@ -93,7 +101,7 @@ public class PlayerController : MonoBehaviour
             Dash();
 
             Invoke(nameof(ResetDash), dashCooldown);
-        }
+        }*/
     }
 
     private void MovePlayer()
@@ -145,5 +153,16 @@ public class PlayerController : MonoBehaviour
 
         rb.AddForce(orientation.forward * dashForce, ForceMode.Impulse);
     }
+
+public void takeDamage(int damage){
+    if(healtPoints-damage<=0){
+        healtPoints=0;
+    }
+    else{
+        healtPoints-=damage;
+    }
+    
+   } 
 }
+
 
