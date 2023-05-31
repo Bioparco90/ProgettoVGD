@@ -20,11 +20,12 @@ public class SpawnTrigger : MonoBehaviour
         int i=0;
         if(canSpawn && !hasSpawned){
             foreach(Transform s in spawnPointList){
-                GameObject spawnedEnemy=Instantiate(enemyToSpawn, s.transform,true);
-                NavMeshAgent agent = GameObject.FindGameObjectWithTag("Respawn").GetComponent<NavMeshAgent>();
-                agent.enabled = false;
-                agent.enabled = true;
-                //spawnedEnemy.transform.localPosition=spawnPointList[i].transform.localPosition;
+                GameObject spawnedEnemy=Instantiate(enemyToSpawn, s.transform.position,Quaternion.identity);
+                spawnedEnemy.AddComponent<NavMeshAgent>();
+            
+                spawnedEnemy.GetComponent<NavMeshAgent>().enabled = false;
+                spawnedEnemy.GetComponent<NavMeshAgent>().enabled = true;
+
                 i++;
             }
             hasSpawned=true;
