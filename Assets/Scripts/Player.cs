@@ -9,15 +9,12 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     public int healtPoints;
-    public float dashForce; //Froza con cui il player fa il dash
     public float moveSpeed; //Massima velocità di movimento
     public float groundDrag; //Attrito col terreno
     public float jumpForce; //Froza con cui il player salta
     public float jumpCooldown; //Cooldown in secondi del salto
-    public float dashCooldown; //Cooldown in secondi del dash
     public float airMultiplier; //Attrito con l'aria
     bool readyToJump;
-    bool readyToDash;
 
     [HideInInspector] public float walkSpeed;
     [HideInInspector] public float sprintSpeed;
@@ -39,13 +36,11 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        healtPoints=100;
-        dashForce = 1000;
+        healtPoints = 100;
         moveSpeed = 15;
         groundDrag = 4;
         jumpForce = 7;
         jumpCooldown = 1;
-        dashCooldown = 3;
         airMultiplier = 1;
         playerHeight = 2f;
 
@@ -53,12 +48,11 @@ public class PlayerController : MonoBehaviour
         rb.freezeRotation = true;
 
         readyToJump = true;
-        readyToDash = true;
     }
 
     private void Update()
     {
-        //healtText.SetText("Health: " + healtPoints);
+        healtText.SetText("Health: " + healtPoints);
 
         //Con un raycast controllo se il player sta toccando il layer del terreno
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
@@ -92,16 +86,6 @@ public class PlayerController : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown); //Chiama la funzione resetJump dopo aver aspettato il cooldown del salto
         }
-
-        /*if (Input.GetKeyDown(KeyCode.LeftShift) && readyToDash)
-        {
-            print("sto dashando");
-            readyToDash = false;
-
-            Dash();
-
-            Invoke(nameof(ResetDash), dashCooldown);
-        }*/
     }
 
     private void MovePlayer()
@@ -143,26 +127,25 @@ public class PlayerController : MonoBehaviour
         readyToJump = true;
     }
 
-    private void ResetDash()
-    {
-        readyToDash = true;
-    }
-    private void Dash()
-    {
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        rb.AddForce(orientation.forward * dashForce, ForceMode.Impulse);
+    public void takeDamage(int damage)
+    {
+        if (healtPoints - damage <= 0)
+        {
+            healtPoints = 0;
+        }
+        else
+        {
+            healtPoints -= damage;
+        }
+
     }
 
-public void takeDamage(int damage){
-    if(healtPoints-damage<=0){
-        healtPoints=0;
+    public void healPlayer(int healthAmount)
+    {
+        healtPoints = healtPoints + healthAmount >= 100 ? 100 : healtPoints + healthAmount;
     }
-    else{
-        healtPoints-=damage;
-    }
-    
-   } 
+
 }
 
 

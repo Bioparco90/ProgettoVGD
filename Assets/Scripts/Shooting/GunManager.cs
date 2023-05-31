@@ -15,9 +15,9 @@ public class GunManager : MonoBehaviour
     Vector3 gunAimPosition = new Vector3(0f, -0.25f, 1f);
     public ParticleSystem gunMuzzleFlash;
     public AudioSource gunShootSound;
-    int maxGunAmmo=20;
-    int maxGunClipAmmo=10;
-    float gunReloadTime=1f;
+    int maxGunAmmo = 20;
+    int maxGunClipAmmo = 10;
+    float gunReloadTime = 1f;
     Weapon gun;
 
     float machineGunFireRate = 0.1f; //Contiene il tempo che deve passare tra uno sparo e l'altro
@@ -25,13 +25,13 @@ public class GunManager : MonoBehaviour
     Vector3 machineGunIdlePosition = new Vector3(1f, -0.4f, 0.5f);
     Vector3 machineGunAimPosition = new Vector3(0f, -0.5f, 0.8f);
     public ParticleSystem machineGunMuzzleFlash;
-    int maxMachineGunAmmo=50;
-    int maxMachineGunClipAmmo=20;
+    int maxMachineGunAmmo = 50;
+    int maxMachineGunClipAmmo = 20;
     public AudioSource machineGunShootSound;
-    float machineGunReloadTime=1.3f;
+    float machineGunReloadTime = 1.3f;
 
-    public AudioSource reloadSound; 
-    
+    public AudioSource reloadSound;
+
 
     Weapon machineGun;
 
@@ -41,45 +41,47 @@ public class GunManager : MonoBehaviour
     float shotGunDamage = 50.0f;
     public ParticleSystem shotGunMuzzleFlash;
     public AudioSource shotGunShootSound;
-    int maxShotGunAmmo=20;
-    int maxShotGunClipAmmo=5;
-    float shotgunReloadTime=2f;
+    int maxShotGunAmmo = 20;
+    int maxShotGunClipAmmo = 5;
+    float shotgunReloadTime = 2f;
 
     Weapon shotGun;
 
-    List<Weapon> weaponList = new List<Weapon>(); //Lista di tutte le armi impugnate dal player*/
+    public List<Weapon> weaponList = new List<Weapon>(); //Lista di tutte le armi impugnate dal player*/
     float timeSinceLastShoot = 0; //Contiene il tempo trascorso dall'ulitmo sparo
 
-    int selectedWeapon; //Variabile che contiene l'indice dell'arma selezionata in quel momento
+    public int selectedWeapon; //Variabile che contiene l'indice dell'arma selezionata in quel momento
+    public Weapon activeWeapon;
     private void Start()
-    {   
+    {
         /*Creazione delle singole armi*/
-        gun = new Weapon(gunIdlePosition, gunAimPosition, gunFireRate, gunDamage, false, gunMuzzleFlash, gunShootSound,reloadSound,maxGunAmmo, maxGunClipAmmo, gunReloadTime);
-        machineGun = new Weapon(machineGunIdlePosition, machineGunAimPosition, machineGunFireRate, machineGunDamage, true, machineGunMuzzleFlash, machineGunShootSound, reloadSound,maxMachineGunAmmo, maxMachineGunClipAmmo , machineGunReloadTime);
-        shotGun = new Weapon(shotGunIdlePosition, shotGunAimPosition, shotGunFireRate, shotGunDamage, false, shotGunMuzzleFlash, shotGunShootSound,reloadSound,maxShotGunAmmo,maxShotGunClipAmmo,shotgunReloadTime);
-        
-        
+        gun = new Weapon(gunIdlePosition, gunAimPosition, gunFireRate, gunDamage, false, gunMuzzleFlash, gunShootSound, reloadSound, maxGunAmmo, maxGunClipAmmo, gunReloadTime);
+        machineGun = new Weapon(machineGunIdlePosition, machineGunAimPosition, machineGunFireRate, machineGunDamage, true, machineGunMuzzleFlash, machineGunShootSound, reloadSound, maxMachineGunAmmo, maxMachineGunClipAmmo, machineGunReloadTime);
+        shotGun = new Weapon(shotGunIdlePosition, shotGunAimPosition, shotGunFireRate, shotGunDamage, false, shotGunMuzzleFlash, shotGunShootSound, reloadSound, maxShotGunAmmo, maxShotGunClipAmmo, shotgunReloadTime);
+
+
         /*Aggiunta delle armi alla lista*/
         weaponList.Add(gun);
         weaponList.Add(machineGun);
         weaponList.Add(shotGun);
-        foreach (Weapon weapon in weaponList){
-            weapon.currentClipAmmo=weapon.maxClipAmmo;
+        foreach (Weapon weapon in weaponList)
+        {
+            weapon.currentClipAmmo = weapon.maxClipAmmo;
         }
 
         selectedWeapon = 0;
         selectWeapon(); //Di default viene selezionata la prima arma della lista
         ammmoCount.SetText(weaponList[selectedWeapon].currentClipAmmo + "/" + weaponList[selectedWeapon].maxAmmo);
     }
-    
+
     private void Update()
     {
-        Weapon activeWeapon=weaponList[selectedWeapon];
+        activeWeapon = weaponList[selectedWeapon];
         timeSinceLastShoot += Time.deltaTime;
 
         weaponSwitch();
 
-        if (Input.GetKey(KeyCode.Mouse0) && timeSinceLastShoot >= activeWeapon.fireRate && !activeWeapon.isReloading && activeWeapon.currentClipAmmo>0)
+        if (Input.GetKey(KeyCode.Mouse0) && timeSinceLastShoot >= activeWeapon.fireRate && !activeWeapon.isReloading && activeWeapon.currentClipAmmo > 0)
         {
             activeWeapon.shoot(playerCamera);
             timeSinceLastShoot = 0;
@@ -87,15 +89,16 @@ public class GunManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && !activeWeapon.isAiming)
         {
-            activeWeapon.startAim(this.gameObject,playerCamera);
+            activeWeapon.startAim(this.gameObject, playerCamera);
         }
 
         if (Input.GetKeyUp(KeyCode.Mouse1) && activeWeapon.isAiming)
         {
-            activeWeapon.stopAim(this.gameObject,playerCamera);
+            activeWeapon.stopAim(this.gameObject, playerCamera);
         }
-    
-        if(Input.GetKey(KeyCode.R) && activeWeapon.currentClipAmmo<activeWeapon.maxClipAmmo && activeWeapon.maxAmmo>0){
+
+        if (Input.GetKey(KeyCode.R) && activeWeapon.currentClipAmmo < activeWeapon.maxClipAmmo && activeWeapon.maxAmmo > 0)
+        {
             StartCoroutine(activeWeapon.reload());
         }
         ammmoCount.SetText(activeWeapon.currentClipAmmo + "/" + activeWeapon.maxAmmo);
@@ -121,7 +124,7 @@ public class GunManager : MonoBehaviour
                 /* 
                  * TODO:
                  * inserire qui la visualizzazione a schermo dell'icona arma se possibile, oppure anche solo il nome 
-                 */ 
+                 */
             }
             else
             {
@@ -159,5 +162,9 @@ public class GunManager : MonoBehaviour
         }
 
     }
-    
+
+    public void addAmmo(int ammoAmount)
+    {
+        activeWeapon.maxAmmo += ammoAmount;
+    }
 }
