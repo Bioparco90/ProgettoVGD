@@ -8,6 +8,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    public AudioSource takeDamageSound;
     public int healtPoints;
     public float moveSpeed; //Massima velocità di movimento
     public float groundDrag; //Attrito col terreno
@@ -138,6 +139,8 @@ public class PlayerController : MonoBehaviour
         {
             healtPoints -= damage;
         }
+
+        takeDamageSound.Play();
 
     }
 
