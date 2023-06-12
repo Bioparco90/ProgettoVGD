@@ -10,7 +10,7 @@ public class GunManager : MonoBehaviour
     /*Creo delle variabili che contengono i valori da passare al costruttore della classe weapon quando 
       istanzierò gli oggetti per ogni arma*/
     float gunFireRate = 0.5f; //Contiene il tempo che deve passare tra uno sparo e l'altro.
-    float gunDamage = 10.0f;
+    int gunDamage = 10;
     Vector3 gunIdlePosition = new Vector3(1f, -0.4f, 0.5f);
     Vector3 gunAimPosition = new Vector3(0f, -0.25f, 1f);
     public ParticleSystem gunMuzzleFlash;
@@ -21,7 +21,7 @@ public class GunManager : MonoBehaviour
     Weapon gun;
 
     float machineGunFireRate = 0.1f; //Contiene il tempo che deve passare tra uno sparo e l'altro
-    float machineGunDamage = 7.0f;
+    int machineGunDamage = 7;
     Vector3 machineGunIdlePosition = new Vector3(1f, -0.4f, 0.5f);
     Vector3 machineGunAimPosition = new Vector3(0f, -0.5f, 0.8f);
     public ParticleSystem machineGunMuzzleFlash;
@@ -38,7 +38,7 @@ public class GunManager : MonoBehaviour
     float shotGunFireRate = 1.5f; //Contiene il tempo che deve passare tra uno sparo e l'altro
     Vector3 shotGunIdlePosition = new Vector3(0.3f, -0.2f, 0.5f);
     Vector3 shotGunAimPosition = new Vector3(0f, -0.2f, 0.3f);
-    float shotGunDamage = 50.0f;
+    int shotGunDamage = 50;
     public ParticleSystem shotGunMuzzleFlash;
     public AudioSource shotGunShootSound;
     int maxShotGunAmmo = 20;
