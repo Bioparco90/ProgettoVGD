@@ -20921,6 +20921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4967fea1a2a01bf428cac5ee252d11e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  takeDamageSound: {fileID: 0}
   healtPoints: 0
   moveSpeed: 0
   groundDrag: 0
@@ -29283,7 +29284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4972167997025879799, guid: 22d2c44fed4ffa743aac7afe4d993905, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4972167997025879799, guid: 22d2c44fed4ffa743aac7afe4d993905, type: 3}
       propertyPath: m_LocalPosition.y
@@ -29319,6 +29320,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4972167997025879799, guid: 22d2c44fed4ffa743aac7afe4d993905, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4972167997025879801, guid: 22d2c44fed4ffa743aac7afe4d993905, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4972167997025879801, guid: 22d2c44fed4ffa743aac7afe4d993905, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4972167997025983191, guid: 22d2c44fed4ffa743aac7afe4d993905, type: 3}
@@ -29584,7 +29593,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24400
+  m_Name: pb_Mesh39810
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2

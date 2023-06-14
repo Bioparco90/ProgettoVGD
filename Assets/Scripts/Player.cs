@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     float horizontalInput;
     float verticalInput;
 
+    public bool tmp = true;
     Vector3 moveDirection;
 
     Rigidbody rb;
@@ -53,7 +54,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        healtText.SetText("Health: " + healtPoints);
+        if(tmp)
+            healtText.SetText("Health: " + healtPoints);
 
         //Con un raycast controllo se il player sta toccando il layer del terreno
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
