@@ -35,7 +35,7 @@ public class PatrolState : StateMachineBehaviour
 
         float distance = Vector3.Distance(animator.transform.position, player.position);
         if (distance < shootRange)
-            animator.SetBool("isInRange", true);
+            animator.SetBool("isRunning", true);
         
     }
 
