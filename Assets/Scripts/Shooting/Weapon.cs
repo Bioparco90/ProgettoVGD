@@ -21,14 +21,14 @@ public class Weapon
     public int maxAmmo; //Munizioni massime dell'arma
     public float reloadTime;
 
-    public Weapon(Vector3 idlePosition, Vector3 aimPosition, float fireRate, int damage, bool isAutomatic, ParticleSystem muzzleFlash, AudioSource shootSound, AudioSource reloadSound, int maxAmmo, int maxClipAmmo, float reloadTime)
+    public Weapon(Vector3 idlePosition, Vector3 aimPosition, float fireRate, int damage, bool isAutomatic, /*ParticleSystem muzzleFlash*/ AudioSource shootSound, AudioSource reloadSound, int maxAmmo, int maxClipAmmo, float reloadTime)
     {
         this.idlePosition = idlePosition;
         this.aimPosition = aimPosition;
         this.fireRate = fireRate;
         this.damage = damage;
         this.isAutomatic = isAutomatic;
-        this.muzzleFlash = muzzleFlash;
+        /*this.muzzleFlash = muzzleFlash;*/
         this.shootSound = shootSound;
         this.maxAmmo = maxAmmo;
         this.maxClipAmmo = maxClipAmmo;
@@ -40,7 +40,7 @@ public class Weapon
     {
         EnemyManager enemy;
         RaycastHit hitPoint;
-        bool rayCastRes = Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitPoint, Mathf.Infinity);
+        bool rayCastRes = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitPoint, Mathf.Infinity);
         if (rayCastRes)
         {
             if (hitPoint.transform.GetComponent<EnemyManager>() != null)
@@ -49,7 +49,7 @@ public class Weapon
                 enemy.takeDamage(this.damage);
 
             }
-            Debug.Log(hitPoint.transform.name);
+            //Debug.Log(hitPoint.transform.name);
             currentClipAmmo--;
             shootSound.Play();
             muzzleFlash.Play();

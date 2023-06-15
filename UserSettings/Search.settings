@@ -7,6 +7,12 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
+	"last_search.3BE40471" = "h: main"
+	"OpenInspectorPreview.3BE40471" = "0"
+	"currentGroup.3BE40471" = "all"
+	"last_search.110DEAF1" = "h:PlayerCollider"
+	"OpenInspectorPreview.110DEAF1" = "0"
+	"currentGroup.110DEAF1" = "scene"
 }
 providers = {
 	adb = {
@@ -53,6 +59,8 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"h:"
+	""
 ]
 searchItemFavorites = [
 ]
@@ -63,5 +71,5 @@ expandedQueries = [
 ]
 queryBuilder = false
 ignoredProperties = "id;name;classname;imagecontentshash"
-helperWidgetCurrentArea = "all"
+helperWidgetCurrentArea = "h:"
 disabledIndexers = ""
