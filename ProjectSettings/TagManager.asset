@@ -10,6 +10,7 @@ TagManager:
   - Wall
   - Checkpoints
   - PlayerCollider
+  - Door
   layers:
   - Default
   - TransparentFX

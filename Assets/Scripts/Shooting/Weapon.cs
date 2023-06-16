@@ -36,7 +36,7 @@ public class Weapon
         this.reloadSound = reloadSound;
     }
 
-    public void shoot(Camera playerCamera)
+    public void shoot()
     {
         EnemyManager enemy;
         RaycastHit hitPoint;
@@ -52,7 +52,7 @@ public class Weapon
             //Debug.Log(hitPoint.transform.name);
             currentClipAmmo--;
             shootSound.Play();
-            muzzleFlash.Play();
+            //muzzleFlash.Play();
         }
     }
 

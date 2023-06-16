@@ -6,7 +6,7 @@ using TMPro;
 public class GunManager : MonoBehaviour
 {
     public TextMeshProUGUI ammmoCount;
-    public Camera playerCamera;
+
     /*Creo delle variabili che contengono i valori da passare al costruttore della classe weapon quando 
       istanzierò gli oggetti per ogni arma*/
     float gunFireRate = 0.5f; //Contiene il tempo che deve passare tra uno sparo e l'altro.
@@ -22,8 +22,8 @@ public class GunManager : MonoBehaviour
 
     float machineGunFireRate = 0.1f; //Contiene il tempo che deve passare tra uno sparo e l'altro
     int machineGunDamage = 7;
-    Vector3 machineGunIdlePosition = new Vector3(1f, -0.4f, 0.5f);
-    Vector3 machineGunAimPosition = new Vector3(0f, -0.5f, 0.8f);
+    Vector3 machineGunIdlePosition = new Vector3(0.2f, -0.15f, 0.4f);
+    Vector3 machineGunAimPosition = new Vector3(-0.75f, 0.1f, 0f);
     public ParticleSystem machineGunMuzzleFlash;
     int maxMachineGunAmmo = 50;
     int maxMachineGunClipAmmo = 20;
@@ -71,7 +71,7 @@ public class GunManager : MonoBehaviour
 
         selectedWeapon = 0;
         selectWeapon(); //Di default viene selezionata la prima arma della lista
-        ammmoCount.SetText(weaponList[selectedWeapon].currentClipAmmo + "/" + weaponList[selectedWeapon].maxAmmo);
+        //ammmoCount.SetText(weaponList[selectedWeapon].currentClipAmmo + "/" + weaponList[selectedWeapon].maxAmmo);
     }
 
     private void Update()
@@ -83,25 +83,25 @@ public class GunManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0) && timeSinceLastShoot >= activeWeapon.fireRate && !activeWeapon.isReloading && activeWeapon.currentClipAmmo > 0)
         {
-            activeWeapon.shoot(playerCamera);
+            activeWeapon.shoot();
             timeSinceLastShoot = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && !activeWeapon.isAiming)
         {
-            activeWeapon.startAim(this.gameObject, playerCamera);
+            activeWeapon.startAim(this.gameObject, Camera.main);
         }
 
         if (Input.GetKeyUp(KeyCode.Mouse1) && activeWeapon.isAiming)
         {
-            activeWeapon.stopAim(this.gameObject, playerCamera);
+            activeWeapon.stopAim(this.gameObject, Camera.main);
         }
 
         if (Input.GetKey(KeyCode.R) && activeWeapon.currentClipAmmo < activeWeapon.maxClipAmmo && activeWeapon.maxAmmo > 0)
         {
             StartCoroutine(activeWeapon.reload());
         }
-        ammmoCount.SetText(activeWeapon.currentClipAmmo + "/" + activeWeapon.maxAmmo);
+        //ammmoCount.SetText(activeWeapon.currentClipAmmo + "/" + activeWeapon.maxAmmo);
 
     }
 
