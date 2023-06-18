@@ -39,9 +39,9 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         healtPoints = 100;
-        moveSpeed = 15;
+        moveSpeed = 25;
         groundDrag = 4;
-        jumpForce = 7;
+        jumpForce = 8;
         jumpCooldown = 1;
         airMultiplier = 1;
         playerHeight = 2f;
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(tmp)
+        if (tmp)
             healtText.SetText("Health: " + healtPoints);
 
         //Con un raycast controllo se il player sta toccando il layer del terreno

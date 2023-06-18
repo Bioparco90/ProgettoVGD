@@ -9,9 +9,11 @@ public class GunManager : MonoBehaviour
 
     /*Creo delle variabili che contengono i valori da passare al costruttore della classe weapon quando 
       istanzierò gli oggetti per ogni arma*/
+
+    string gunName = "Pistol";
     float gunFireRate = 0.5f; //Contiene il tempo che deve passare tra uno sparo e l'altro.
     int gunDamage = 10;
-    Vector3 gunIdlePosition = new Vector3(1f, -0.4f, 0.5f);
+    Vector3 gunIdlePosition = new Vector3(1f, -0.2f, 0.5f);
     Vector3 gunAimPosition = new Vector3(0f, -0.25f, 1f);
     public ParticleSystem gunMuzzleFlash;
     public AudioSource gunShootSound;
@@ -20,6 +22,7 @@ public class GunManager : MonoBehaviour
     float gunReloadTime = 1f;
     Weapon gun;
 
+    string machineGunName = "Machinegun";
     float machineGunFireRate = 0.1f; //Contiene il tempo che deve passare tra uno sparo e l'altro
     int machineGunDamage = 7;
     Vector3 machineGunIdlePosition = new Vector3(0.2f, -0.15f, 0.4f);
@@ -35,6 +38,7 @@ public class GunManager : MonoBehaviour
 
     Weapon machineGun;
 
+    string shotGunName = "Shotgun";
     float shotGunFireRate = 1.5f; //Contiene il tempo che deve passare tra uno sparo e l'altro
     Vector3 shotGunIdlePosition = new Vector3(0.3f, -0.2f, 0.5f);
     Vector3 shotGunAimPosition = new Vector3(0f, -0.2f, 0.3f);
@@ -55,54 +59,87 @@ public class GunManager : MonoBehaviour
     private void Start()
     {
         /*Creazione delle singole armi*/
-        gun = new Weapon(gunIdlePosition, gunAimPosition, gunFireRate, gunDamage, false, gunShootSound, reloadSound, maxGunAmmo, maxGunClipAmmo, gunReloadTime);
-        machineGun = new Weapon(machineGunIdlePosition, machineGunAimPosition, machineGunFireRate, machineGunDamage, true, machineGunShootSound, reloadSound, maxMachineGunAmmo, maxMachineGunClipAmmo, machineGunReloadTime);
-        shotGun = new Weapon(shotGunIdlePosition, shotGunAimPosition, shotGunFireRate, shotGunDamage, false, shotGunShootSound, reloadSound, maxShotGunAmmo, maxShotGunClipAmmo, shotgunReloadTime);
+        gun = new Weapon(gunName, gunIdlePosition, gunAimPosition, gunFireRate, gunDamage, false, gunShootSound, reloadSound, maxGunAmmo, maxGunClipAmmo, gunReloadTime);
+        machineGun = new Weapon(machineGunName, machineGunIdlePosition, machineGunAimPosition, machineGunFireRate, machineGunDamage, true, machineGunShootSound, reloadSound, maxMachineGunAmmo, maxMachineGunClipAmmo, machineGunReloadTime);
+        shotGun = new Weapon(shotGunName, shotGunIdlePosition, shotGunAimPosition, shotGunFireRate, shotGunDamage, false, shotGunShootSound, reloadSound, maxShotGunAmmo, maxShotGunClipAmmo, shotgunReloadTime);
 
 
         /*Aggiunta delle armi alla lista*/
-        weaponList.Add(gun);
+        /*weaponList.Add(gun);
         weaponList.Add(machineGun);
-        weaponList.Add(shotGun);
-        foreach (Weapon weapon in weaponList)
+        weaponList.Add(shotGun);*/
+        /*foreach (Weapon weapon in weaponList)
         {
             weapon.currentClipAmmo = weapon.maxClipAmmo;
-        }
+        }*/
 
-        selectedWeapon = 0;
-        selectWeapon(); //Di default viene selezionata la prima arma della lista
+        //selectedWeapon = 0;
+        //selectWeapon(); //Di default viene selezionata la prima arma della lista
         //ammmoCount.SetText(weaponList[selectedWeapon].currentClipAmmo + "/" + weaponList[selectedWeapon].maxAmmo);
     }
 
     private void Update()
     {
-        activeWeapon = weaponList[selectedWeapon];
         timeSinceLastShoot += Time.deltaTime;
 
-        weaponSwitch();
+        if (activeWeapon != null)
+        {
+            weaponSwitch();
+            ammmoCount.SetText(activeWeapon.currentClipAmmo + "/" + activeWeapon.maxAmmo);
+        }
 
-        if (Input.GetKey(KeyCode.Mouse0) && timeSinceLastShoot >= activeWeapon.fireRate && !activeWeapon.isReloading && activeWeapon.currentClipAmmo > 0)
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            RaycastHit hitPoint;
+            bool rayCastRes = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitPoint, 100f);
+            if (rayCastRes)
+            {
+                switch (hitPoint.transform.gameObject.name)
+                {
+                    case "Pistol":
+                        weaponList.Add(gun);
+                        selectedWeapon = 0;
+                        selectWeapon(); //Di default viene selezionata la prima arma della lista
+                        Destroy(hitPoint.transform.gameObject);
+                        break;
+                    case "Machinegun":
+                        weaponList.Add(machineGun);
+                        selectedWeapon = 1;
+                        selectWeapon(); //Di default viene selezionata la prima arma della lista
+                        Destroy(hitPoint.transform.gameObject);
+                        break;
+
+                    case "Shotgun":
+                        weaponList.Add(shotGun);
+                        selectedWeapon = 2;
+                        selectWeapon(); //Di default viene selezionata la prima arma della lista
+                        Destroy(hitPoint.transform.gameObject);
+                        break;
+                }
+            }
+
+        }
+        if (Input.GetKey(KeyCode.Mouse0) && activeWeapon != null && timeSinceLastShoot >= activeWeapon.fireRate && !activeWeapon.isReloading && activeWeapon.currentClipAmmo > 0)
         {
             activeWeapon.shoot();
             timeSinceLastShoot = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !activeWeapon.isAiming)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && activeWeapon != null && !activeWeapon.isAiming)
         {
             activeWeapon.startAim(this.gameObject, Camera.main);
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse1) && activeWeapon.isAiming)
+        if (Input.GetKeyUp(KeyCode.Mouse1) && activeWeapon != null && activeWeapon.isAiming)
         {
             activeWeapon.stopAim(this.gameObject, Camera.main);
         }
 
-        if (Input.GetKey(KeyCode.R) && activeWeapon.currentClipAmmo < activeWeapon.maxClipAmmo && activeWeapon.maxAmmo > 0)
+        if (Input.GetKey(KeyCode.R) && activeWeapon != null && activeWeapon.currentClipAmmo < activeWeapon.maxClipAmmo && activeWeapon.maxAmmo > 0)
         {
             StartCoroutine(activeWeapon.reload());
         }
-        //ammmoCount.SetText(activeWeapon.currentClipAmmo + "/" + activeWeapon.maxAmmo);
-
     }
 
 
@@ -121,6 +158,8 @@ public class GunManager : MonoBehaviour
             {
                 weapon.gameObject.SetActive(true);
                 transform.localPosition = weaponList[i].idlePosition;
+                activeWeapon = weaponList[selectedWeapon];
+                activeWeapon.currentClipAmmo = activeWeapon.maxClipAmmo;
                 /* 
                  * TODO:
                  * inserire qui la visualizzazione a schermo dell'icona arma se possibile, oppure anche solo il nome 
@@ -137,6 +176,7 @@ public class GunManager : MonoBehaviour
     /*Metodo che switcha le armi tramite lo scroll della rotella del mouse*/
     void weaponSwitch()
     {
+        /**/
         int previousSelectedWeapon = selectedWeapon; //Salvo in una variabile l'arma precedentemente attiva
 
         if (Input.GetAxis("Mouse ScrollWheel") >= 0f)

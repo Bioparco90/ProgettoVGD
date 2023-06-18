@@ -14,6 +14,7 @@ public class CameraController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Camera.main.fieldOfView = 80;
+        this.transform.localPosition = new Vector3(0f, 3.5f, 0);
     }
 
     void Update()

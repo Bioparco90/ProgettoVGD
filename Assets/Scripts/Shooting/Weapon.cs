@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Weapon
 {
+    public string name;
     public Vector3 idlePosition; //Posizione di base
     public Vector3 aimPosition { get; set; }  //Posizione durante la mira
     public bool isReloading;
@@ -21,8 +22,9 @@ public class Weapon
     public int maxAmmo; //Munizioni massime dell'arma
     public float reloadTime;
 
-    public Weapon(Vector3 idlePosition, Vector3 aimPosition, float fireRate, int damage, bool isAutomatic, /*ParticleSystem muzzleFlash*/ AudioSource shootSound, AudioSource reloadSound, int maxAmmo, int maxClipAmmo, float reloadTime)
+    public Weapon(string name, Vector3 idlePosition, Vector3 aimPosition, float fireRate, int damage, bool isAutomatic, /*ParticleSystem muzzleFlash*/ AudioSource shootSound, AudioSource reloadSound, int maxAmmo, int maxClipAmmo, float reloadTime)
     {
+        this.name = name;
         this.idlePosition = idlePosition;
         this.aimPosition = aimPosition;
         this.fireRate = fireRate;
@@ -49,10 +51,8 @@ public class Weapon
                 enemy.takeDamage(this.damage);
 
             }
-            //Debug.Log(hitPoint.transform.name);
             currentClipAmmo--;
             shootSound.Play();
-            //muzzleFlash.Play();
         }
     }
 
