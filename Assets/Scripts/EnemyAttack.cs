@@ -1,20 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Diagnostics;
 
 public class EnemyAttack : MonoBehaviour
 {
-
     public Transform hitPoint;
-    public float attackRange = 2.0f;
+    public float attackRange = 7.0f;
     public LayerMask playerLayer;
+
     void Attack()
     {
+        StackTrace stackTrace = new StackTrace();           // get call stack
+        StackFrame[] stackFrames = stackTrace.GetFrames();  // get method calls (frames)
+
+        // write call stack method names
+        foreach (StackFrame stackFrame in stackFrames)
+        {
+            print(stackFrame.GetMethod().CallingConvention);   // write method name
+        }
         Collider[] hitPlayer = Physics.OverlapSphere(hitPoint.position, attackRange, playerLayer);
-        Debug.Log(hitPlayer.Length);
+        //print(hitPlayer.Length);
         foreach (Collider player in hitPlayer)
         {
-            Debug.Log("Colpito" + player.name);
+            //print("Colpito " + player.name);
             player.GetComponent<PlayerController>().takeDamage(10);
         }
     }

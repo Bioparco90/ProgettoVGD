@@ -606,7 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoint: {fileID: 2777835189087279779}
-  attackRange: 2
+  attackRange: 7
   playerLayer:
     serializedVersion: 2
     m_Bits: 64

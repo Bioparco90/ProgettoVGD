@@ -13,7 +13,7 @@ public class RunState : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent = animator.GetComponent<NavMeshAgent>();      
+        agent = animator.GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("PlayerCollider").transform;
     }
 
