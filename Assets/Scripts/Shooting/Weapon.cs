@@ -5,7 +5,7 @@ using System.Collections;
 public class Weapon
 {
     public string name;
-    public Vector3 idlePosition; //Posizione di base
+    public Vector3 idlePosition; //Posizione di base (quando non sta mirando)
     public Vector3 aimPosition { get; set; }  //Posizione durante la mira
     public bool isReloading;
     public bool isAiming { get; set; } //True se il player sta mirando
@@ -49,7 +49,6 @@ public class Weapon
             {
                 enemy = hitPoint.transform.GetComponent<EnemyManager>();
                 enemy.takeDamage(this.damage);
-
             }
             currentClipAmmo--;
             shootSound.Play();
@@ -90,6 +89,5 @@ public class Weapon
         reloadSound.Play();
         yield return new WaitForSeconds(reloadTime);
         isReloading = false;
-
     }
 }

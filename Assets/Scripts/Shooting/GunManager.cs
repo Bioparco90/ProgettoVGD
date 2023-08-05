@@ -5,6 +5,7 @@ using TMPro;
 
 public class GunManager : MonoBehaviour
 {
+    public int selectedWeapon; //Variabile che contiene l'indice dell'arma selezionata in quel momento
     public TextMeshProUGUI ammmoCount;
 
     /*Creo delle variabili che contengono i valori da passare al costruttore della classe weapon quando 
@@ -54,7 +55,6 @@ public class GunManager : MonoBehaviour
     public List<Weapon> weaponList = new List<Weapon>(); //Lista di tutte le armi impugnate dal player*/
     float timeSinceLastShoot = 0; //Contiene il tempo trascorso dall'ulitmo sparo
 
-    public int selectedWeapon; //Variabile che contiene l'indice dell'arma selezionata in quel momento
     public Weapon activeWeapon;
     private void Start()
     {
@@ -65,17 +65,17 @@ public class GunManager : MonoBehaviour
 
 
         /*Aggiunta delle armi alla lista*/
-        /*weaponList.Add(gun);
+        weaponList.Add(gun);
         weaponList.Add(machineGun);
-        weaponList.Add(shotGun);*/
-        /*foreach (Weapon weapon in weaponList)
+        weaponList.Add(shotGun);
+        foreach (Weapon weapon in weaponList)
         {
             weapon.currentClipAmmo = weapon.maxClipAmmo;
-        }*/
+        }
 
-        //selectedWeapon = 0;
-        //selectWeapon(); //Di default viene selezionata la prima arma della lista
-        //ammmoCount.SetText(weaponList[selectedWeapon].currentClipAmmo + "/" + weaponList[selectedWeapon].maxAmmo);
+        selectedWeapon = 0;
+        selectWeapon(); //Di default viene selezionata la prima arma della lista
+        ammmoCount.SetText(weaponList[selectedWeapon].currentClipAmmo + "/" + weaponList[selectedWeapon].maxAmmo);
     }
 
     private void Update()
@@ -88,38 +88,6 @@ public class GunManager : MonoBehaviour
             ammmoCount.SetText(activeWeapon.currentClipAmmo + "/" + activeWeapon.maxAmmo);
         }
 
-
-        if (Input.GetKey(KeyCode.E))
-        {
-            RaycastHit hitPoint;
-            bool rayCastRes = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitPoint, 100f);
-            if (rayCastRes)
-            {
-                switch (hitPoint.transform.gameObject.name)
-                {
-                    case "Pistol":
-                        weaponList.Add(gun);
-                        selectedWeapon = 0;
-                        selectWeapon(); //Di default viene selezionata la prima arma della lista
-                        Destroy(hitPoint.transform.gameObject);
-                        break;
-                    case "Machinegun":
-                        weaponList.Add(machineGun);
-                        selectedWeapon = 1;
-                        selectWeapon(); //Di default viene selezionata la prima arma della lista
-                        Destroy(hitPoint.transform.gameObject);
-                        break;
-
-                    case "Shotgun":
-                        weaponList.Add(shotGun);
-                        selectedWeapon = 2;
-                        selectWeapon(); //Di default viene selezionata la prima arma della lista
-                        Destroy(hitPoint.transform.gameObject);
-                        break;
-                }
-            }
-
-        }
         if (Input.GetKey(KeyCode.Mouse0) && activeWeapon != null && timeSinceLastShoot >= activeWeapon.fireRate && !activeWeapon.isReloading && activeWeapon.currentClipAmmo > 0)
         {
             activeWeapon.shoot();
@@ -151,7 +119,7 @@ public class GunManager : MonoBehaviour
           quando trovo l'arma che sto cercando (indicata dalla variabile selectedWeapon) 
           attivo il GameObject dell'arma e imposto la posizione dell'arma nella scena
           
-          Tutte le armi che non corrispondono a quella selezionata vengonon disattivate*/
+          Tutte le armi che non corrispondono a quella selezionata vengono disattivate*/
         foreach (Transform weapon in transform)
         {
             if (i == selectedWeapon)
@@ -159,7 +127,6 @@ public class GunManager : MonoBehaviour
                 weapon.gameObject.SetActive(true);
                 transform.localPosition = weaponList[i].idlePosition;
                 activeWeapon = weaponList[selectedWeapon];
-                activeWeapon.currentClipAmmo = activeWeapon.maxClipAmmo;
                 /* 
                  * TODO:
                  * inserire qui la visualizzazione a schermo dell'icona arma se possibile, oppure anche solo il nome 

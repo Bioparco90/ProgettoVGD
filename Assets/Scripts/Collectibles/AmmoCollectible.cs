@@ -8,14 +8,11 @@ public class AmmoCollectible : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            print("Ammo sta toccando il player");
-
             GunManager gunManager = GameObject.Find("WeaponHolder").GetComponent<GunManager>();
 
             gunManager.addAmmo(10);
 
             GameObject.Destroy(this.gameObject);
-
         }
 
     }

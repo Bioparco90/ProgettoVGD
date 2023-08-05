@@ -8,18 +8,6 @@ public class EnemyAttack : MonoBehaviour
     public Transform hitPoint;
     public float attackRange = 2.0f;
     public LayerMask playerLayer;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void Attack()
     {
         Collider[] hitPlayer = Physics.OverlapSphere(hitPoint.position, attackRange, playerLayer);
