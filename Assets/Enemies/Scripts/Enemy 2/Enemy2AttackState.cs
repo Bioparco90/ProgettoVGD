@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy2AttackState : StateMachineBehaviour
 {
     Transform player;
-    float attackRange = 50;
+    float attackRange = 20;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         player = GameObject.FindGameObjectWithTag("PlayerCollider").transform;

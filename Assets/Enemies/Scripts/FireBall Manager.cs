@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireBallManager : MonoBehaviour
 {
-    public float fireBallSpeed = 0;
+    public float fireBallSpeed;
 
     Transform target;
 
@@ -20,15 +20,15 @@ public class FireBallManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("PlayerCollider").GetComponent<PlayerController>();
         //direction = transform.parent.transform.forward;
         rb = GetComponent<Rigidbody>();
+        fireBallSpeed = 70;
     }
 
 
 
     void Update()
     {
-        print("Fireball speed: " + fireBallSpeed);
         transform.LookAt(player.transform);
-        rb.AddForce(rb.transform.forward * fireBallSpeed * Time.deltaTime, ForceMode.Impulse);
+        rb.AddForce(rb.transform.forward * fireBallSpeed, ForceMode.Impulse);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -38,8 +38,7 @@ public class FireBallManager : MonoBehaviour
             player.takeDamage(20);
         }
 
-        if (other.transform.name != "Enemy2")
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
 
