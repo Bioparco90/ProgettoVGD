@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy2IdleState : StateMachineBehaviour
-{  
+{
     float timer;
-    float shootRange = 10;
+    float shootRange = 20;
     Transform player;
-    
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -18,12 +18,8 @@ public class Enemy2IdleState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        timer += Time.deltaTime;
-        if (timer > 2)
-            animator.SetBool("isPatrolling", true);
-
         float distance = Vector3.Distance(animator.transform.position, player.position);
-        /*if (distance < shootRange)
-            animator.SetBool("isInRange", true);*/
+        if (distance < shootRange)
+            animator.SetBool("isAttacking", true);
     }
 }

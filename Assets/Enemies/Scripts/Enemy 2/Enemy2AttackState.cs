@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy2AttackState : StateMachineBehaviour
 {
     Transform player;
-    float attackRange = 5;
+    float attackRange = 20;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         player = GameObject.FindGameObjectWithTag("PlayerCollider").transform;
@@ -16,7 +16,7 @@ public class Enemy2AttackState : StateMachineBehaviour
     {
         animator.transform.LookAt(player);
         float distance = Vector3.Distance(animator.transform.position, player.position);
-        
+
         if (distance > attackRange)
             animator.SetBool("isAttacking", false);
     }
