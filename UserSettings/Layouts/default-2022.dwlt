@@ -325,9 +325,15 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: fefaffff
+=======
       m_SelectedIDs: 1e640000
       m_LastClickedID: 0
       m_ExpandedIDs: fcfaffff
+>>>>>>> 74f1ab42fa257cdb99beac0a6e058a1c5a589713
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -681,9 +687,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
+    m_Target: {x: 776.65936, y: 473.64172, z: -6.837365}
+    speed: 2
+    m_Value: {x: 769.66907, y: 462.62674, z: -6.4433675}
+=======
     m_Target: {x: 9.481062, y: 3.6, z: -56.05105}
     speed: 2
     m_Value: {x: 9.481062, y: 3.6, z: -56.05105}
+>>>>>>> 74f1ab42fa257cdb99beac0a6e058a1c5a589713
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -733,9 +745,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0.04609265, y: 0.95271885, z: -0.18669097, w: 0.23530094}
   m_Size:
+<<<<<<< HEAD
+    m_Target: 914.9499
+    speed: 2
+    m_Value: 875.5501
+=======
     m_Target: 7.3904057
     speed: 2
     m_Value: 7.0721583
+>>>>>>> 74f1ab42fa257cdb99beac0a6e058a1c5a589713
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1022,10 +1040,17 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< HEAD
+    scrollPos: {x: 0, y: 60}
+    m_SelectedIDs: fe610000
+    m_LastClickedID: 25086
+    m_ExpandedIDs: 00000000fc610000fe61000000ca9a3bffffff7f
+=======
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: a0640000
     m_LastClickedID: 25760
     m_ExpandedIDs: 0000000066640000686400006a6400006c6400006e640000706400007264000074640000
+>>>>>>> 74f1ab42fa257cdb99beac0a6e058a1c5a589713
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1053,7 +1078,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 60}
     m_SelectedIDs: a8a20000
     m_LastClickedID: 41640
+<<<<<<< HEAD
+    m_ExpandedIDs: 00000000fc610000fe610000
+=======
     m_ExpandedIDs: 0000000066640000686400006a6400006c6400006e640000706400007264000074640000
+>>>>>>> 74f1ab42fa257cdb99beac0a6e058a1c5a589713
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1121,7 +1150,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c262c1329a02fa49b5cb4c297106f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  m_MinSize: {x: 129, y: 28}
+=======
   m_MinSize: {x: 140, y: 30}
+>>>>>>> 74f1ab42fa257cdb99beac0a6e058a1c5a589713
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: ProBuilder
