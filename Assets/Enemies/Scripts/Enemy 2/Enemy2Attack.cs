@@ -6,18 +6,22 @@ public class Enemy2Attack : MonoBehaviour
 {
     public Transform hitPoint;
     public GameObject fireBallPrefab;
+    float timer;
 
 
     Animator enemyAnimator;
     private void Start()
     {
         enemyAnimator = GetComponent<Animator>();
+        timer = 0;
     }
     void Update()
     {
-        if (enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("Claw Attack"))
+        timer += Time.deltaTime;
+        if (enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("Claw Attack") && timer >= 1)
         {
             shootFireBall();
+            timer = 0;
         }
     }
 
