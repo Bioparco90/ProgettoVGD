@@ -5776,6 +5776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 03014e99cb085834691d5cec157ca8a7, type: 2}
+  effectsVolumeSlider: {fileID: 1750987055}
   resolutionDropdown: {fileID: 336208291}
 --- !u!1 &1685426745
 GameObject:
@@ -6023,7 +6024,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1671830152}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetVolume
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

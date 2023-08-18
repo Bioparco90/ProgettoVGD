@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8311,7 +8311,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c9122e8d3c3a70649b46cb566a17de93, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8407,7 +8407,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: dd824beb38f41ac48a1f95240ac04f6a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.15
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8503,7 +8503,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fccd598f720ca94428060e76dae5ae17, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.15
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8599,6 +8599,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4f5566757aee546a29a78a6311734f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 03014e99cb085834691d5cec157ca8a7, type: 2}
+  selectedWeapon: 0
   ammmoCount: {fileID: 659448639}
   gunMuzzleFlash: {fileID: 0}
   gunShootSound: {fileID: 2111250491}
@@ -8607,7 +8609,6 @@ MonoBehaviour:
   reloadSound: {fileID: 2111250488}
   shotGunMuzzleFlash: {fileID: 0}
   shotGunShootSound: {fileID: 2111250489}
-  selectedWeapon: 0
 --- !u!1 &2115847458
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ using UnityEngine.Audio;
 public class GunManager : MonoBehaviour
 {
     // Audio Wolf
-    public AudioMixerGroup audioMixer;
+    public AudioMixer audioMixer;
     private float mainVolume;
 
     public int selectedWeapon; //Variabile che contiene l'indice dell'arma selezionata in quel momento
@@ -189,12 +189,13 @@ public class GunManager : MonoBehaviour
     // Da usare come coefficiente?
     private float GetVolumeCoefficient()
     {
-        audioMixer.audioMixer.GetFloat("volume", out mainVolume);
+        audioMixer.GetFloat("effectsVolume", out mainVolume);
         // audioMixer.GetFloat("volume", out mainVolume);
         float normalizedVolume = Mathf.InverseLerp(-80, 0, mainVolume);
         // string name = audioMixer.name;
         // Debug.Log(name + ": " + normalizedVolume.ToString());
+        gunShootSound.volume = normalizedVolume;
         return normalizedVolume;
-        // gunShootSound.volume = normalizedVolume;
+
     }
 }
