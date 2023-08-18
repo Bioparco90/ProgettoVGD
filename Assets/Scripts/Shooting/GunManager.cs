@@ -75,7 +75,7 @@ public class GunManager : MonoBehaviour
 
         selectedWeapon = 0;
         selectWeapon(); //Di default viene selezionata la prima arma della lista
-        ammmoCount.SetText(weaponList[selectedWeapon].currentClipAmmo + "/" + weaponList[selectedWeapon].maxAmmo);
+        //ammmoCount.SetText(weaponList[selectedWeapon].currentClipAmmo + "/" + weaponList[selectedWeapon].maxAmmo);
     }
 
     private void Update()
@@ -85,7 +85,7 @@ public class GunManager : MonoBehaviour
         if (activeWeapon != null)
         {
             weaponSwitch();
-            ammmoCount.SetText(activeWeapon.currentClipAmmo + "/" + activeWeapon.maxAmmo);
+            //ammmoCount.SetText(activeWeapon.currentClipAmmo + "/" + activeWeapon.maxAmmo);
         }
 
         if (Input.GetKey(KeyCode.Mouse0) && activeWeapon != null && timeSinceLastShoot >= activeWeapon.fireRate && !activeWeapon.isReloading && activeWeapon.currentClipAmmo > 0)

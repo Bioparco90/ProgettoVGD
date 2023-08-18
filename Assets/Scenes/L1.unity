@@ -2933,7 +2933,7 @@ GameObject:
   - component: {fileID: 817746164}
   - component: {fileID: 817746163}
   - component: {fileID: 817746162}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: PlayerCollider
   m_Icon: {fileID: 0}
@@ -8599,6 +8599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4f5566757aee546a29a78a6311734f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedWeapon: 0
   ammmoCount: {fileID: 659448639}
   gunMuzzleFlash: {fileID: 0}
   gunShootSound: {fileID: 2111250491}
@@ -8607,7 +8608,6 @@ MonoBehaviour:
   reloadSound: {fileID: 2111250488}
   shotGunMuzzleFlash: {fileID: 0}
   shotGunShootSound: {fileID: 2111250489}
-  selectedWeapon: 0
 --- !u!1 &2115847458
 GameObject:
   m_ObjectHideFlags: 0
