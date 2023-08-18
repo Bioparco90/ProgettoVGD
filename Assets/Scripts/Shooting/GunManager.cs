@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Audio;
 
 public class GunManager : MonoBehaviour
 {
+    // Audio Wolf
+    public AudioMixerGroup audioMixer;
+    private float mainVolume;
+
     public int selectedWeapon; //Variabile che contiene l'indice dell'arma selezionata in quel momento
     public TextMeshProUGUI ammmoCount;
 
@@ -108,6 +113,12 @@ public class GunManager : MonoBehaviour
         {
             StartCoroutine(activeWeapon.reload());
         }
+
+        // TEST AUDIO WOLF
+        if (Input.GetKey(KeyCode.KeypadPlus))
+        {
+            GetVolumeCoefficient();
+        }
     }
 
 
@@ -173,5 +184,16 @@ public class GunManager : MonoBehaviour
     public void addAmmo(int ammoAmount)
     {
         activeWeapon.maxAmmo += ammoAmount;
+    }
+
+    // Da usare come coefficiente?
+    private void GetVolumeCoefficient()
+    {
+        audioMixer.audioMixer.GetFloat("volume", out mainVolume);
+        // audioMixer.GetFloat("volume", out mainVolume);
+        float normalizedVolume = Mathf.InverseLerp(-80, 0, mainVolume);
+        string name = audioMixer.name;
+        Debug.Log(name + ": " + normalizedVolume.ToString());
+        // gunShootSound.volume = normalizedVolume;
     }
 }
