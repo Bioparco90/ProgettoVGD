@@ -187,13 +187,14 @@ public class GunManager : MonoBehaviour
     }
 
     // Da usare come coefficiente?
-    private void GetVolumeCoefficient()
+    private float GetVolumeCoefficient()
     {
         audioMixer.audioMixer.GetFloat("volume", out mainVolume);
         // audioMixer.GetFloat("volume", out mainVolume);
         float normalizedVolume = Mathf.InverseLerp(-80, 0, mainVolume);
-        string name = audioMixer.name;
-        Debug.Log(name + ": " + normalizedVolume.ToString());
+        // string name = audioMixer.name;
+        // Debug.Log(name + ": " + normalizedVolume.ToString());
+        return normalizedVolume;
         // gunShootSound.volume = normalizedVolume;
     }
 }
