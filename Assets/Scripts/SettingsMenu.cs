@@ -8,10 +8,11 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
+    public Slider musicVolumeSlider;
     public Slider effectsVolumeSlider;
+    public Slider voicesVolumeSlider;
     public Dropdown resolutionDropdown;
     Resolution[] resolutions;
-
 
     public void Start()
     {
@@ -50,13 +51,13 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetVolume()
     {
+        float musicVolume = musicVolumeSlider.value;
         float effectsVolume = effectsVolumeSlider.value;
-        audioMixer.SetFloat("effectsVolume", effectsVolume);
-    }
+        float voicesVolume = voicesVolumeSlider.value;
 
-    public void SetQuality(int qualityIndex)
-    {
-        QualitySettings.SetQualityLevel(qualityIndex);
+        audioMixer.SetFloat("musicVolume", musicVolume);
+        audioMixer.SetFloat("effectsVolume", effectsVolume);
+        audioMixer.SetFloat("voicesVolume", voicesVolume);
     }
 
     public void SetFullscreen(bool isFullscreen)
