@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Audio;
+using System;
 
 public class GunManager : MonoBehaviour
 {
+    // Menu pausa
+    public GameObject pauseMenu;
+    private bool isPaused = false;
+
     public int selectedWeapon; //Variabile che contiene l'indice dell'arma selezionata in quel momento
     public TextMeshProUGUI ammmoCount;
 
@@ -82,31 +88,57 @@ public class GunManager : MonoBehaviour
     {
         timeSinceLastShoot += Time.deltaTime;
 
-        if (activeWeapon != null)
+        if (activeWeapon != null && !isPaused)
         {
             weaponSwitch();
             //ammmoCount.SetText(activeWeapon.currentClipAmmo + "/" + activeWeapon.maxAmmo);
         }
 
-        if (Input.GetKey(KeyCode.Mouse0) && activeWeapon != null && timeSinceLastShoot >= activeWeapon.fireRate && !activeWeapon.isReloading && activeWeapon.currentClipAmmo > 0)
+        if (Input.GetKey(KeyCode.Mouse0) && activeWeapon != null && timeSinceLastShoot >= activeWeapon.fireRate && !activeWeapon.isReloading && activeWeapon.currentClipAmmo > 0 && !isPaused)
         {
             activeWeapon.shoot();
             timeSinceLastShoot = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && activeWeapon != null && !activeWeapon.isAiming)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && activeWeapon != null && !activeWeapon.isAiming && !isPaused)
         {
             activeWeapon.startAim(this.gameObject, Camera.main);
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse1) && activeWeapon != null && activeWeapon.isAiming)
+        if (Input.GetKeyUp(KeyCode.Mouse1) && activeWeapon != null && activeWeapon.isAiming && !isPaused)
         {
             activeWeapon.stopAim(this.gameObject, Camera.main);
         }
 
-        if (Input.GetKey(KeyCode.R) && activeWeapon != null && activeWeapon.currentClipAmmo < activeWeapon.maxClipAmmo && activeWeapon.maxAmmo > 0)
+        if (Input.GetKey(KeyCode.R) && activeWeapon != null && activeWeapon.currentClipAmmo < activeWeapon.maxClipAmmo && activeWeapon.maxAmmo > 0 && !isPaused)
         {
             StartCoroutine(activeWeapon.reload());
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+        }
+    }
+
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Time.timeScale = 0f;  // Mette il gioco in pausa
+            pauseMenu.SetActive(true);
+        }
+        else
+        {
+            activeWeapon.stopAim(this.gameObject, Camera.main);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            Time.timeScale = 1f;  // Riprende il gioco
+            pauseMenu.SetActive(false);
         }
     }
 
