@@ -13002,6 +13002,7 @@ MonoBehaviour:
   voicesVolumeSlider: {fileID: 935210225}
   resolutionDropdown: {fileID: 46175714}
   gunManager: {fileID: 2111250492}
+  player: {fileID: 0}
 --- !u!114 &1948279507
 MonoBehaviour:
   m_ObjectHideFlags: 0
