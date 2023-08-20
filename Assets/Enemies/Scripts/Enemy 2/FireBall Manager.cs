@@ -35,7 +35,7 @@ public class FireBallManager : MonoBehaviour
     {
         if (other.transform.tag == "PlayerCollider")
         {
-            player.takeDamage(70);
+            player.takeDamage(20);
         }
 
         if (other.transform.name != "Enemy2")

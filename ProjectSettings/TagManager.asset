@@ -11,9 +11,6 @@ TagManager:
   - Checkpoints
   - PlayerCollider
   - Door
-  - Enemy1
-  - Enemy2
-  - Enemy3
   layers:
   - Default
   - TransparentFX
