@@ -10,11 +10,9 @@ public class EnemyAttack : MonoBehaviour
     void Attack()
     {
         Collider[] hitPlayer = Physics.OverlapSphere(hitPoint.position, attackRange, playerLayer);
-        print(hitPlayer.Length);
         foreach (Collider player in hitPlayer)
         {
-            print("Colpito " + player.name);
-            player.GetComponent<PlayerController>().takeDamage(10);
+            player.GetComponent<PlayerController>().takeDamage(25);
         }
     }
 
