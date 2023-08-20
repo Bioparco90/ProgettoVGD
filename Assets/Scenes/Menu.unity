@@ -932,13 +932,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 151723813}
+        m_TargetAssemblyTypeName: MainMenuScript, Assembly-CSharp
+        m_MethodName: LoadGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2600,7 +2600,6 @@ GameObject:
   - component: {fileID: 1671830150}
   - component: {fileID: 1671830149}
   - component: {fileID: 1671830148}
-  - component: {fileID: 1671830152}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2693,25 +2692,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1671830152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1671830147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbfa2bde178e2c249a8cdaaf177f384b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 03014e99cb085834691d5cec157ca8a7, type: 2}
-  musicVolumeSlider: {fileID: 0}
-  effectsVolumeSlider: {fileID: 0}
-  voicesVolumeSlider: {fileID: 0}
-  resolutionDropdown: {fileID: 0}
-  gunManager: {fileID: 0}
-  player: {fileID: 0}
 --- !u!1 &1752028104
 GameObject:
   m_ObjectHideFlags: 0
