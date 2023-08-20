@@ -117,7 +117,6 @@ public class GunManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Pause Menu");
             TogglePause();
         }
     }

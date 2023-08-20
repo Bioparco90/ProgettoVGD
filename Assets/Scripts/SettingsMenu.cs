@@ -12,6 +12,8 @@ public class SettingsMenu : MonoBehaviour
     public Slider effectsVolumeSlider;
     public Slider voicesVolumeSlider;
     public Dropdown resolutionDropdown;
+    public GunManager gunManager;
+    public PlayerController player;
     Resolution[] resolutions;
 
     public void Start()
@@ -25,13 +27,6 @@ public class SettingsMenu : MonoBehaviour
         {
             string option = resolutions[i].width + " x " + resolutions[i].height + " @ " + resolutions[i].refreshRate + "hz";
             options.Add(option);
-            /*
-            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
-            {
-                currentResolutionIndex = i;
-            }
-            */
-            //  && resolutions[i].refreshRateRatio.Equals(Screen.currentResolution.refreshRateRatio)
             if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
             {
                 currentResolutionIndex = i;
@@ -55,13 +50,30 @@ public class SettingsMenu : MonoBehaviour
         float effectsVolume = effectsVolumeSlider.value;
         float voicesVolume = voicesVolumeSlider.value;
 
+        float[] normalizedVolume = { GetNormalizedVolume(musicVolume), GetNormalizedVolume(effectsVolume), GetNormalizedVolume(voicesVolume) };
+
         audioMixer.SetFloat("musicVolume", musicVolume);
         audioMixer.SetFloat("effectsVolume", effectsVolume);
         audioMixer.SetFloat("voicesVolume", voicesVolume);
+
+        // Setta il volume dell'arma del giocatore
+        gunManager.gunShootSound.volume = gunManager.machineGunShootSound.volume = gunManager.shotGunShootSound.volume = normalizedVolume[1];
+
+        // Setta il volume della ricarica delle armi del giocatore
+        gunManager.reloadSound.volume = normalizedVolume[1];
+
+        player.takeDamageSound.volume = normalizedVolume[2];
+    }
+
+    private float GetNormalizedVolume(float volume)
+    {
+        return Mathf.InverseLerp(-80, 0, volume);
     }
 
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
     }
+
+
 }
