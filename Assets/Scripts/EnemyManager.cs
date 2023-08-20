@@ -1,68 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class EnemyManager : MonoBehaviour
 {
-    bool canHit;
-    PlayerController player;
-    float timeSinceLastHit;
-    float hitCooldown;
-    public int healt;
-    int damage;
-    void Start()
-    {
-        timeSinceLastHit = 0;
-        hitCooldown = 2;
-        healt = 100;
-        damage = 10;
-        player = GameObject.FindGameObjectWithTag("PlayerCollider").GetComponent<PlayerController>();
-    }
+    int enemyHealt;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        timeSinceLastHit += Time.deltaTime;
-        if (timeSinceLastHit >= hitCooldown)
+        enemyHealt = 0;
+        switch (this.tag)
         {
-            dealDamage();
-        }
+            case "Enemy1":
+                enemyHealt = 250;
+                break;
 
-        if (healt <= 0)
-        {
-            GameObject.Destroy(this.gameObject);
+            case "Enemy2":
+                enemyHealt = 400;
+                break;
+
+            case "Enemy3":
+                enemyHealt = 600;
+                break;
+            default:
+                break;
         }
     }
 
-
+    private void Update()
+    {
+        print(this.name + " healt: " + enemyHealt);
+    }
     public void takeDamage(int damageToTake)
     {
-        healt = healt - damageToTake <= 0 ? 0 : healt - damageToTake;
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "PlayerCollider")
+        if (enemyHealt - damageToTake <= 0)
         {
-            canHit = true;
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            enemyHealt -= damageToTake;
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "PlayerCollider")
-        {
-            canHit = false;
-        }
-    }
-
-    public void dealDamage()
-    {
-        if (canHit)
-        {
-            player.takeDamage(damage);
-            timeSinceLastHit = 0;
-        }
-
-    }
 }
