@@ -42,6 +42,8 @@ public class MainMenuScript : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
+
+    // Le due funzioni seguenti gestiscono il reset del focus dei bottoni (rimanevano selezionati anche dopo l'uscita dal menu)
     private void OnEnable()
     {
         // Quando il menu di pausa viene attivato, reimposta lo stato dei bottoni
