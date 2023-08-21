@@ -12,6 +12,10 @@ public class SettingsMenu : MonoBehaviour
     public Slider effectsVolumeSlider;
     public Slider voicesVolumeSlider;
     public Dropdown resolutionDropdown;
+
+    public Slider mouseSensivitySlider;
+    public CameraController cameraController;
+
     public GunManager gunManager;
     public PlayerController player;
     Resolution[] resolutions;
@@ -75,5 +79,10 @@ public class SettingsMenu : MonoBehaviour
         Screen.fullScreen = isFullscreen;
     }
 
+    public void SetSensivity()
+    {
+        float sensivity = mouseSensivitySlider.value;
+        cameraController.mouseSensitivity = sensivity;
+    }
 
 }

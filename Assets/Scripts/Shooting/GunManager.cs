@@ -8,7 +8,9 @@ using System;
 public class GunManager : MonoBehaviour
 {
     // Menu pausa
+    public GameObject pauseMenuCanva;
     public GameObject pauseMenu;
+    public GameObject optionsMenu;
     private bool isPaused = false;
 
     public int selectedWeapon; //Variabile che contiene l'indice dell'arma selezionata in quel momento
@@ -130,7 +132,7 @@ public class GunManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             Time.timeScale = 0f;  // Mette il gioco in pausa
-            pauseMenu.SetActive(true);
+            pauseMenuCanva.SetActive(true);
         }
         else
         {
@@ -138,7 +140,9 @@ public class GunManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             Time.timeScale = 1f;  // Riprende il gioco
-            pauseMenu.SetActive(false);
+            optionsMenu.SetActive(false); // Se abbiamo cliccato esc mentre siamo in options, così lo disattiva
+            pauseMenu.SetActive(true); // Come sopra. Gestisce, nell'eventualità di una riapetrura del menu, la corretta visualizzazione 
+            pauseMenuCanva.SetActive(false);
         }
     }
 
