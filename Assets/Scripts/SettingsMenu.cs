@@ -18,6 +18,8 @@ public class SettingsMenu : MonoBehaviour
 
     public GunManager gunManager;
     public PlayerController player;
+    public AudioSource pauseMenuAudio;
+
     Resolution[] resolutions;
 
     public void Start()
@@ -67,6 +69,8 @@ public class SettingsMenu : MonoBehaviour
         gunManager.reloadSound.volume = normalizedVolume[1];
 
         player.takeDamageSound.volume = normalizedVolume[2];
+
+        pauseMenuAudio.volume = normalizedVolume[0];
     }
 
     private float GetNormalizedVolume(float volume)

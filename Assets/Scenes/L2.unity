@@ -3697,6 +3697,7 @@ MonoBehaviour:
   cameraController: {fileID: 290016946}
   gunManager: {fileID: 563484292}
   player: {fileID: 1342264303}
+  pauseMenuAudio: {fileID: 469281704}
 --- !u!114 &469281708
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12737,6 +12737,7 @@ MonoBehaviour:
   cameraController: {fileID: 1702386243}
   gunManager: {fileID: 2111250492}
   player: {fileID: 817746164}
+  pauseMenuAudio: {fileID: 1948279513}
 --- !u!114 &1948279507
 MonoBehaviour:
   m_ObjectHideFlags: 0
