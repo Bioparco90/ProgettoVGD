@@ -24,6 +24,7 @@ public class PauseGame : MonoBehaviour
 
     public void BackToStart()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
 
