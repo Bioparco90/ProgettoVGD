@@ -32,6 +32,11 @@ public class StartGame : MonoBehaviour
                 break;
         }
 
+        SetSettings();
+    }
+
+    private void SetSettings()
+    {
         isFullScreenToggle.isOn = PlayerPrefs.HasKey("isFullscreen") ? PlayerPrefs.GetString("isFullscreen") == "True" : true;
         sensitivitySlider.value = PlayerPrefs.HasKey("Sensitivity") ? PlayerPrefs.GetFloat("Sensitivity") : 150f;
     }
