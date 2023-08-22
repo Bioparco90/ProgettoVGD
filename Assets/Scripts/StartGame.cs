@@ -12,6 +12,7 @@ public class StartGame : MonoBehaviour
     Vector3 levelThreeStartPos = new Vector3(-905, 1, -1040);
 
     public Toggle isFullScreenToggle;
+    public Slider sensitivitySlider;
 
     void Start()
     {
@@ -31,7 +32,7 @@ public class StartGame : MonoBehaviour
                 break;
         }
 
-        isFullScreenToggle.isOn = PlayerPrefs.GetString("isFullscreen") == "True";
-
+        isFullScreenToggle.isOn = PlayerPrefs.HasKey("isFullscreen") ? PlayerPrefs.GetString("isFullscreen") == "True" : true;
+        sensitivitySlider.value = PlayerPrefs.HasKey("Sensitivity") ? PlayerPrefs.GetFloat("Sensitivity") : 150f;
     }
 }

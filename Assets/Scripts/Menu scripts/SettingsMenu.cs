@@ -20,8 +20,6 @@ public class SettingsMenu : MonoBehaviour
     public PlayerController player;
     public AudioSource pauseMenuAudio;
 
-    public Toggle fullScreenToggle;
-
     Resolution[] resolutions;
 
     public void Start()
@@ -84,13 +82,13 @@ public class SettingsMenu : MonoBehaviour
     {
         Screen.fullScreen = isFullscreen;
         PlayerPrefs.SetString("isFullscreen", isFullscreen.ToString());
-        // Debug.Log("SetFullScreen: " + isFullscreen.ToString());
     }
 
     public void SetSensivity()
     {
         float sensivity = mouseSensivitySlider.value;
         cameraController.mouseSensitivity = sensivity;
+        PlayerPrefs.SetFloat("Sensitivity", sensivity);
     }
 
 }
