@@ -723,6 +723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b8facb48a67e945ba158f4255b5788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFullScreenToggle: {fileID: 815295905}
 --- !u!4 &91752184
 Transform:
   m_ObjectHideFlags: 0
@@ -12738,6 +12739,7 @@ MonoBehaviour:
   gunManager: {fileID: 2111250492}
   player: {fileID: 817746164}
   pauseMenuAudio: {fileID: 1948279513}
+  fullScreenToggle: {fileID: 815295905}
 --- !u!114 &1948279507
 MonoBehaviour:
   m_ObjectHideFlags: 0

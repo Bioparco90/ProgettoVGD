@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-
+using UnityEngine.UI;
 
 public class StartGame : MonoBehaviour
 {
@@ -11,6 +10,8 @@ public class StartGame : MonoBehaviour
     Vector3 levelOneStartPos = new Vector3(-30, 1, -7);
     Vector3 levelTwoStartPos = new Vector3(26, 1, -265);
     Vector3 levelThreeStartPos = new Vector3(-905, 1, -1040);
+
+    public Toggle isFullScreenToggle;
 
     void Start()
     {
@@ -29,5 +30,8 @@ public class StartGame : MonoBehaviour
                 playerTransform.position = levelThreeStartPos;
                 break;
         }
+
+        isFullScreenToggle.isOn = PlayerPrefs.GetString("isFullscreen") == "True";
+
     }
 }
