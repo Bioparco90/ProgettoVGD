@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -13,6 +14,8 @@ public class StartGame : MonoBehaviour
 
     public Toggle isFullScreenToggle;
     public Slider sensitivitySlider;
+    public Slider volumeSlider;
+    public AudioMixer audioMixer;
 
     void Start()
     {
@@ -37,6 +40,8 @@ public class StartGame : MonoBehaviour
 
     private void SetSettings()
     {
+        audioMixer.SetFloat("masterVolume", PlayerPrefs.GetFloat("Volume"));
+        volumeSlider.value = PlayerPrefs.GetFloat("Volume");
         isFullScreenToggle.isOn = PlayerPrefs.HasKey("isFullscreen") ? PlayerPrefs.GetString("isFullscreen") == "True" : true;
         sensitivitySlider.value = PlayerPrefs.HasKey("Sensitivity") ? PlayerPrefs.GetFloat("Sensitivity") : 150f;
     }

@@ -4,9 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
+    public AudioSource music;
     private void Start()
     {
         Screen.fullScreen = PlayerPrefs.GetString("isFullscreen") == "True";
+        float volume = PlayerPrefs.GetFloat("Volume");
+        music.volume = GetNormalizedVolume(volume);
     }
 
     public void PlayGame()
@@ -27,5 +30,10 @@ public class MainMenuScript : MonoBehaviour
     public static void LoadGame()
     {
         throw new NotImplementedException();
+    }
+
+    private float GetNormalizedVolume(float volume)
+    {
+        return Mathf.InverseLerp(-80, 0, volume);
     }
 }

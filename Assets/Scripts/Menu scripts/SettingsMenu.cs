@@ -8,9 +8,7 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
-    public Slider musicVolumeSlider;
-    public Slider effectsVolumeSlider;
-    public Slider voicesVolumeSlider;
+    public Slider masterVolumeSlider;
     public Dropdown resolutionDropdown;
 
     public Slider mouseSensivitySlider;
@@ -52,25 +50,23 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetVolume()
     {
-        float musicVolume = musicVolumeSlider.value;
-        float effectsVolume = effectsVolumeSlider.value;
-        float voicesVolume = voicesVolumeSlider.value;
+        float volume = masterVolumeSlider.value;
 
-        float[] normalizedVolume = { GetNormalizedVolume(musicVolume), GetNormalizedVolume(effectsVolume), GetNormalizedVolume(voicesVolume) };
+        float normalizedVolume = GetNormalizedVolume(volume);
 
-        audioMixer.SetFloat("musicVolume", musicVolume);
-        audioMixer.SetFloat("effectsVolume", effectsVolume);
-        audioMixer.SetFloat("voicesVolume", voicesVolume);
+        audioMixer.SetFloat("masterVolume", volume);
 
         // Setta il volume dell'arma del giocatore
-        gunManager.gunShootSound.volume = gunManager.machineGunShootSound.volume = gunManager.shotGunShootSound.volume = normalizedVolume[1];
+        gunManager.gunShootSound.volume = gunManager.machineGunShootSound.volume = gunManager.shotGunShootSound.volume = normalizedVolume;
 
         // Setta il volume della ricarica delle armi del giocatore
-        gunManager.reloadSound.volume = normalizedVolume[1];
+        gunManager.reloadSound.volume = normalizedVolume;
 
-        player.takeDamageSound.volume = normalizedVolume[2];
+        player.takeDamageSound.volume = normalizedVolume;
 
-        pauseMenuAudio.volume = normalizedVolume[0];
+        pauseMenuAudio.volume = normalizedVolume;
+
+        PlayerPrefs.SetFloat("Volume", volume);
     }
 
     private float GetNormalizedVolume(float volume)
