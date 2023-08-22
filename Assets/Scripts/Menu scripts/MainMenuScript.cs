@@ -4,6 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
+    private void Start()
+    {
+        Screen.fullScreen = PlayerPrefs.GetString("isFullscreen") == "True";
+    }
 
     public void PlayGame()
     {

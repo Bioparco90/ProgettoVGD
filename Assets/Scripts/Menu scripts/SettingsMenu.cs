@@ -20,6 +20,8 @@ public class SettingsMenu : MonoBehaviour
     public PlayerController player;
     public AudioSource pauseMenuAudio;
 
+    public Toggle fullScreenToggle;
+
     Resolution[] resolutions;
 
     public void Start()
@@ -81,6 +83,8 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
+        PlayerPrefs.SetString("isFullscreen", isFullscreen.ToString());
+        // Debug.Log("SetFullScreen: " + isFullscreen.ToString());
     }
 
     public void SetSensivity()
