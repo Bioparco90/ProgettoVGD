@@ -601,7 +601,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 64130755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a6d103269e50cf43ae2b4c38e5058f3, type: 3}
+  m_Script: {fileID: 11500000, guid: a0900843c6e65f64e9656bea13972106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ammoText: {fileID: 659448639}
@@ -13381,6 +13381,7 @@ MonoBehaviour:
   reloadSound: {fileID: 2111250488}
   shotGunMuzzleFlash: {fileID: 0}
   shotGunShootSound: {fileID: 2111250489}
+  hud: {fileID: 64130760}
 --- !u!1 &2115847458
 GameObject:
   m_ObjectHideFlags: 0
