@@ -64,6 +64,8 @@ public class GunManager : MonoBehaviour
     float timeSinceLastShoot = 0; //Contiene il tempo trascorso dall'ulitmo sparo
 
     public Weapon activeWeapon;
+    public Hud hud;
+
     private void Start()
     {
         /*Creazione delle singole armi*/
@@ -83,6 +85,8 @@ public class GunManager : MonoBehaviour
 
         selectedWeapon = 0;
         selectWeapon(); //Di default viene selezionata la prima arma della lista
+
+        hud.UpdateAmmoCount();
         //ammmoCount.SetText(weaponList[selectedWeapon].currentClipAmmo + "/" + weaponList[selectedWeapon].maxAmmo);
     }
 
@@ -93,6 +97,7 @@ public class GunManager : MonoBehaviour
         if (activeWeapon != null && !isPaused)
         {
             weaponSwitch();
+            hud.UpdateAmmoCount();
             //ammmoCount.SetText(activeWeapon.currentClipAmmo + "/" + activeWeapon.maxAmmo);
         }
 
@@ -100,6 +105,7 @@ public class GunManager : MonoBehaviour
         {
             activeWeapon.shoot();
             timeSinceLastShoot = 0;
+            hud.UpdateAmmoCount();
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && activeWeapon != null && !activeWeapon.isAiming && !isPaused)
@@ -115,6 +121,7 @@ public class GunManager : MonoBehaviour
         if (Input.GetKey(KeyCode.R) && activeWeapon != null && activeWeapon.currentClipAmmo < activeWeapon.maxClipAmmo && activeWeapon.maxAmmo > 0 && !isPaused)
         {
             StartCoroutine(activeWeapon.reload());
+            hud.UpdateAmmoCount();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
