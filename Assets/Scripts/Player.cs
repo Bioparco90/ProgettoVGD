@@ -33,8 +33,9 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody rb;
-    public TextMeshProUGUI healtText;
+    public TextMeshProUGUI healtText; // Perchè?
 
+    public Hud hud;
 
     private void Start()
     {
@@ -73,6 +74,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+        hud.UpdateHealthText();
     }
 
     private void MyInput()
