@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI healtText; // Perchè?
 
     public Hud hud;
+    public bool isImmortal;
 
     private void Start()
     {
@@ -51,6 +52,8 @@ public class PlayerController : MonoBehaviour
         rb.freezeRotation = true;
 
         readyToJump = true;
+
+        isImmortal = PlayerPrefs.HasKey("isImmortal") ? PlayerPrefs.GetString("isImmortal") == "True" : false;
     }
 
     private void Update()
@@ -134,6 +137,11 @@ public class PlayerController : MonoBehaviour
 
     public void takeDamage(int damage)
     {
+        if (isImmortal)
+        {
+            damage = 0;
+        }
+
         if (healtPoints - damage <= 0)
         {
             healtPoints = 0;

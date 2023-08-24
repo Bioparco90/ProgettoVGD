@@ -87,4 +87,9 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("Sensitivity", sensivity);
     }
 
+    public void SetImmortalMode(bool isImmortal)
+    {
+        player.isImmortal = isImmortal;
+        PlayerPrefs.SetString("isImmortal", isImmortal.ToString());
+    }
 }
