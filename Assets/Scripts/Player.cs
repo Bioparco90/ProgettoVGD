@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     public Hud hud;
     public bool isImmortal;
+    public string scene;
 
     private void Start()
     {
@@ -54,6 +55,7 @@ public class PlayerController : MonoBehaviour
         readyToJump = true;
 
         isImmortal = PlayerPrefs.HasKey("isImmortal") ? PlayerPrefs.GetString("isImmortal") == "True" : false;
+        scene = SceneManager.GetActiveScene().name;
     }
 
     private void Update()
@@ -158,6 +160,28 @@ public class PlayerController : MonoBehaviour
     public void healPlayer(int healthAmount)
     {
         healtPoints = healtPoints + healthAmount >= 100 ? 100 : healtPoints + healthAmount;
+    }
+
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        healtPoints = data.health;
+
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+
+        Quaternion rotation = new()
+        {
+            x = data.rotation[0],
+            y = data.rotation[1],
+            z = data.rotation[2]
+        };
+        transform.rotation = rotation;
+        SceneManager.LoadScene(data.scene);
     }
 
 }

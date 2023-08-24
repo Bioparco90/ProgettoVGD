@@ -27,9 +27,13 @@ public class MainMenuScript : MonoBehaviour
         Application.Quit();
     }
 
-    public static void LoadGame()
+    public void LoadGame()
     {
-        throw new NotImplementedException();
+        PlayerData playerData = SaveSystem.LoadPlayer();
+        if (playerData != null)
+        {
+            SceneManager.LoadScene(playerData.scene);
+        }
     }
 
     private float GetNormalizedVolume(float volume)

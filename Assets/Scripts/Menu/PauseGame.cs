@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseGame : MonoBehaviour
 {
     public GunManager gunManager;
+    public PlayerController player;
 
     public void Resume()
     {
@@ -14,12 +15,12 @@ public class PauseGame : MonoBehaviour
 
     public void SaveGame()
     {
-        throw new NotImplementedException();
+        SaveSystem.SavePlayer(player);
     }
 
     public void LoadGame()
     {
-        MainMenuScript.LoadGame();
+        throw new NotImplementedException();
     }
 
     public void BackToStart()
