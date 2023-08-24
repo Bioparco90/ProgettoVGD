@@ -18,11 +18,6 @@ public class PauseGame : MonoBehaviour
         SaveSystem.SavePlayer(player);
     }
 
-    public void LoadGame()
-    {
-        throw new NotImplementedException();
-    }
-
     public void BackToStart()
     {
         Time.timeScale = 1f;

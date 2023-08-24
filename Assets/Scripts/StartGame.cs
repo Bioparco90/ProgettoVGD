@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class StartGame : MonoBehaviour
 {
+    public PlayerController player;
     Transform playerTransform;
     Vector3 levelOneStartPos = new Vector3(-30, 1, -7);
     Vector3 levelTwoStartPos = new Vector3(26, 1, -265);
@@ -21,20 +22,43 @@ public class StartGame : MonoBehaviour
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("PlayerCollider").GetComponent<Transform>();
-        switch (SceneManager.GetActiveScene().name)
+        //playerTransform = player.transform;
+       /* bool isLoaded = PlayerPrefs.GetString("LoadedGame") == "True";
+
+        if (isLoaded)
         {
-            case "L1":
-                playerTransform.position = levelOneStartPos;
-                break;
+            PlayerData data = SaveSystem.LoadPlayer();
+            if (data != null)
+            {
+                Vector3 vec = new()
+                {
+                    x = data.position[0],
+                    y = data.position[1],
+                    z = data.position[2]
+                };
 
-            case "L2":
-                playerTransform.position = levelTwoStartPos;
-                break;
-
-            case "L3":
-                playerTransform.position = levelThreeStartPos;
-                break;
+                playerTransform.position = vec;
+            }
+            PlayerPrefs.SetString("LoadedGame", "False");
         }
+        else
+        {*/
+            switch (SceneManager.GetActiveScene().name)
+            {
+                case "L1":
+                    playerTransform.position = levelOneStartPos;
+                    break;
+
+                case "L2":
+                    playerTransform.position = levelTwoStartPos;
+                    break;
+
+                case "L3":
+                    playerTransform.position = levelThreeStartPos;
+                    break;
+            }
+        //}
+
 
         SetSettings();
     }

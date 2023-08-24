@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        bool isLoaded = PlayerPrefs.GetString("LoadedGame") == "True";
+
         healtPoints = 100;
         moveSpeed = 25;
         groundDrag = 4;
@@ -56,6 +58,12 @@ public class PlayerController : MonoBehaviour
 
         isImmortal = PlayerPrefs.HasKey("isImmortal") ? PlayerPrefs.GetString("isImmortal") == "True" : false;
         scene = SceneManager.GetActiveScene().name;
+
+        if (isLoaded)
+        {
+            LoadPlayer();
+            PlayerPrefs.SetString("LoadedGame", "False");
+        }
     }
 
     private void Update()
@@ -173,15 +181,6 @@ public class PlayerController : MonoBehaviour
         position.y = data.position[1];
         position.z = data.position[2];
         transform.position = position;
-
-        Quaternion rotation = new()
-        {
-            x = data.rotation[0],
-            y = data.rotation[1],
-            z = data.rotation[2]
-        };
-        transform.rotation = rotation;
-        SceneManager.LoadScene(data.scene);
     }
 
 }

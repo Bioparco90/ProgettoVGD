@@ -14,11 +14,13 @@ public class MainMenuScript : MonoBehaviour
 
     public void PlayGame()
     {
+        PlayerPrefs.SetString("LoadedGame", "False");
         SceneManager.LoadScene(1);
     }
 
     public void SelectLevel(int scene)
     {
+        PlayerPrefs.SetString("LoadedGame", "False");
         SceneManager.LoadScene(scene);
     }
 
@@ -32,6 +34,7 @@ public class MainMenuScript : MonoBehaviour
         PlayerData playerData = SaveSystem.LoadPlayer();
         if (playerData != null)
         {
+            PlayerPrefs.SetString("LoadedGame", "True");
             SceneManager.LoadScene(playerData.scene);
         }
     }
