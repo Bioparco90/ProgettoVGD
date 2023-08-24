@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class BossMeleeAttack : StateMachineBehaviour
 {
+    float attackRange;
+    Transform player;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        attackRange = 10;
+        player = GameObject.FindGameObjectWithTag("PlayerCollider").GetComponent<Transform>();
+    }
+
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.transform.LookAt(player);
+        float distance = Vector3.Distance(animator.transform.position, player.position);
+        if (distance > attackRange)
+            animator.SetBool("isAttacking", false);
+    }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

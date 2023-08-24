@@ -41,6 +41,7 @@ public class Weapon
     public void shoot()
     {
         EnemyManager enemy;
+        BossManager boss;
         RaycastHit hitPoint;
         bool rayCastRes = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitPoint, Mathf.Infinity);
         if (rayCastRes)
@@ -49,6 +50,11 @@ public class Weapon
             {
                 enemy = hitPoint.transform.GetComponent<EnemyManager>();
                 enemy.takeDamage(this.damage);
+            }
+            else if (hitPoint.transform.name == "Boss")
+            {
+                boss = hitPoint.transform.GetComponent<BossManager>();
+                boss.takeDamage(this.damage);
             }
             currentClipAmmo--;
             shootSound.Play();
