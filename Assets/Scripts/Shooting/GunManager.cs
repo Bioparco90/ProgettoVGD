@@ -86,7 +86,7 @@ public class GunManager : MonoBehaviour
         selectedWeapon = 0;
         selectWeapon(); //Di default viene selezionata la prima arma della lista
 
-        //hud.UpdateAmmoCount();
+        hud.UpdateAmmoCount();
         //ammmoCount.SetText(weaponList[selectedWeapon].currentClipAmmo + "/" + weaponList[selectedWeapon].maxAmmo);
     }
 
@@ -97,7 +97,7 @@ public class GunManager : MonoBehaviour
         if (activeWeapon != null && !isPaused)
         {
             weaponSwitch();
-            //hud.UpdateAmmoCount();
+            hud.UpdateAmmoCount();
             //ammmoCount.SetText(activeWeapon.currentClipAmmo + "/" + activeWeapon.maxAmmo);
         }
 
@@ -105,7 +105,7 @@ public class GunManager : MonoBehaviour
         {
             activeWeapon.shoot();
             timeSinceLastShoot = 0;
-            //hud.UpdateAmmoCount();
+            hud.UpdateAmmoCount();
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && activeWeapon != null && !activeWeapon.isAiming && !isPaused)
@@ -210,7 +210,7 @@ public class GunManager : MonoBehaviour
         {
             selectWeapon();
         }
-
+        hud.UpdateWeaponImage();
     }
 
     public void addAmmo(int ammoAmount)

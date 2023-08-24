@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -606,6 +606,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoText: {fileID: 659448639}
   gunManager: {fileID: 2111250492}
+  weaponImage: {fileID: 1512337457}
+  sprites:
+  - {fileID: 21300000, guid: 3e652a597824bd44d91fd93f87e3857d, type: 3}
+  - {fileID: 21300000, guid: 42d0e32d6fbccf3438cb33286fb41e44, type: 3}
+  - {fileID: 21300000, guid: 5b7ba0d9d2234364a96c9db530596d61, type: 3}
 --- !u!1 &68532122
 GameObject:
   m_ObjectHideFlags: 0
@@ -8566,7 +8571,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 42d0e32d6fbccf3438cb33286fb41e44, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3e652a597824bd44d91fd93f87e3857d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
