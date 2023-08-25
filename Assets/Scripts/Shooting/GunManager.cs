@@ -88,7 +88,7 @@ public class GunManager : MonoBehaviour
         if (isLoaded)
         {
             LoadAmmo();
-            PlayerPrefs.SetString("LoadedGame", "False");
+            // PlayerPrefs.SetString("LoadedGame", "False");
         }
 
         selectedWeapon = 0;

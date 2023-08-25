@@ -39,6 +39,13 @@ public class StartGame : MonoBehaviour
         }
 
         SetSettings();
+        bool isLoaded = PlayerPrefs.GetString("LoadedGame") == "True";
+        if (isLoaded)
+        {
+            player.LoadPlayer();
+        }
+
+        StartCoroutine(RunAfterSceneLoaded());
     }
 
     private void SetSettings()
@@ -48,5 +55,14 @@ public class StartGame : MonoBehaviour
         isFullScreenToggle.isOn = PlayerPrefs.HasKey("isFullscreen") ? PlayerPrefs.GetString("isFullscreen") == "True" : true;
         sensitivitySlider.value = PlayerPrefs.HasKey("Sensitivity") ? PlayerPrefs.GetFloat("Sensitivity") : 150f;
         isImmortal.isOn = PlayerPrefs.HasKey("isImmortal") ? PlayerPrefs.GetString("isImmortal") == "True" : false;
+    }
+
+    private IEnumerator RunAfterSceneLoaded()
+    {
+        // Aspetta finché la scena non è completamente caricata
+        yield return new WaitForEndOfFrame();
+
+        // Esegui l'azione dopo il caricamento completo della scena
+        PlayerPrefs.SetString("LoadedGame", "False");
     }
 }
