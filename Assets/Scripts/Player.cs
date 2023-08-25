@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         if (isLoaded)
         {
             LoadPlayer();
-            PlayerPrefs.SetString("LoadedGame", "False");
+            // PlayerPrefs.SetString("LoadedGame", "False"); // Se lo setto qua poi non mi entra nell'if nel gun manager e non mi carica le munizioni
         }
     }
 

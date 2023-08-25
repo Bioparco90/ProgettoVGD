@@ -68,6 +68,8 @@ public class GunManager : MonoBehaviour
 
     private void Start()
     {
+        bool isLoaded = PlayerPrefs.GetString("LoadedGame") == "True";
+
         /*Creazione delle singole armi*/
         gun = new Weapon(gunName, gunIdlePosition, gunAimPosition, gunFireRate, gunDamage, false, gunShootSound, reloadSound, maxGunAmmo, maxGunClipAmmo, gunReloadTime);
         machineGun = new Weapon(machineGunName, machineGunIdlePosition, machineGunAimPosition, machineGunFireRate, machineGunDamage, true, machineGunShootSound, reloadSound, maxMachineGunAmmo, maxMachineGunClipAmmo, machineGunReloadTime);
@@ -81,6 +83,12 @@ public class GunManager : MonoBehaviour
         foreach (Weapon weapon in weaponList)
         {
             weapon.currentClipAmmo = weapon.maxClipAmmo;
+        }
+
+        if (isLoaded)
+        {
+            LoadAmmo();
+            PlayerPrefs.SetString("LoadedGame", "False");
         }
 
         selectedWeapon = 0;
@@ -216,5 +224,20 @@ public class GunManager : MonoBehaviour
     public void addAmmo(int ammoAmount)
     {
         activeWeapon.maxAmmo += ammoAmount;
+    }
+
+    public Weapon[] GetWeapons()
+    {
+        return weaponList.ToArray();
+    }
+
+    public void LoadAmmo()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        for (int i = 0; i < weaponList.Count; i++)
+        {
+            weaponList[i].maxAmmo = data.maxAmmo[i];
+            weaponList[i].currentClipAmmo = data.currentClipAmmo[i];
+        }
     }
 }

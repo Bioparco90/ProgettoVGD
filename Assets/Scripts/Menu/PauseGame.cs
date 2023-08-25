@@ -15,7 +15,7 @@ public class PauseGame : MonoBehaviour
 
     public void SaveGame()
     {
-        SaveSystem.SavePlayer(player);
+        SaveSystem.SavePlayer(player, gunManager);
     }
 
     public void BackToStart()

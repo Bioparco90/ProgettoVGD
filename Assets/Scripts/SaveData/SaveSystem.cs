@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class SaveSystem
 {
-    public static void SavePlayer(PlayerController player)
+    public static void SavePlayer(PlayerController player, GunManager guns)
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
         string path = Application.persistentDataPath + "/player.save";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        PlayerData data = new PlayerData(player);
+        PlayerData data = new PlayerData(player, guns);
 
         formatter.Serialize(stream, data);
         stream.Close();

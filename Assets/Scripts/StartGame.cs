@@ -22,43 +22,21 @@ public class StartGame : MonoBehaviour
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("PlayerCollider").GetComponent<Transform>();
-        //playerTransform = player.transform;
-       /* bool isLoaded = PlayerPrefs.GetString("LoadedGame") == "True";
 
-        if (isLoaded)
+        switch (SceneManager.GetActiveScene().name)
         {
-            PlayerData data = SaveSystem.LoadPlayer();
-            if (data != null)
-            {
-                Vector3 vec = new()
-                {
-                    x = data.position[0],
-                    y = data.position[1],
-                    z = data.position[2]
-                };
+            case "L1":
+                playerTransform.position = levelOneStartPos;
+                break;
 
-                playerTransform.position = vec;
-            }
-            PlayerPrefs.SetString("LoadedGame", "False");
+            case "L2":
+                playerTransform.position = levelTwoStartPos;
+                break;
+
+            case "L3":
+                playerTransform.position = levelThreeStartPos;
+                break;
         }
-        else
-        {*/
-            switch (SceneManager.GetActiveScene().name)
-            {
-                case "L1":
-                    playerTransform.position = levelOneStartPos;
-                    break;
-
-                case "L2":
-                    playerTransform.position = levelTwoStartPos;
-                    break;
-
-                case "L3":
-                    playerTransform.position = levelThreeStartPos;
-                    break;
-            }
-        //}
-
 
         SetSettings();
     }
