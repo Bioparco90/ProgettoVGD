@@ -12,7 +12,7 @@ public class BossWalkState : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        attackRange = 10;
+        attackRange = 20;
         player = GameObject.FindGameObjectWithTag("PlayerCollider").GetComponent<Transform>();
         agent = animator.GetComponent<NavMeshAgent>();
     }
