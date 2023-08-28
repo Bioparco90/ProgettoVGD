@@ -5,8 +5,7 @@ using UnityEngine.AI;
 
 public class BossFlyState : StateMachineBehaviour
 {
-
-    float timer;
+    float attackRange;
     List<Transform> checkpoints = new List<Transform>();
     NavMeshAgent agent;
     Transform player;
@@ -14,6 +13,7 @@ public class BossFlyState : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        attackRange = 5;
         Transform checkpointsObj = GameObject.FindGameObjectWithTag("Checkpoints").transform;
         foreach (Transform t in checkpointsObj)
             checkpoints.Add(t);
@@ -25,6 +25,12 @@ public class BossFlyState : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        float distance = Vector3.Distance(animator.transform.position, player.position);
+
+        if (distance < attackRange)
+        {
+            animator.SetBool("isFlyAttacking", true);
+        }
         if (agent.remainingDistance <= agent.stoppingDistance)
             agent.SetDestination(checkpoints[Random.Range(0, checkpoints.Count)].position);
     }
