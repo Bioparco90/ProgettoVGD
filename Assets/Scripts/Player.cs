@@ -182,7 +182,6 @@ public class PlayerController : MonoBehaviour
         position.z = data.position[2];
         transform.position = position;
     }
-
 }
 
 
