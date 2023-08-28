@@ -5,16 +5,21 @@ using UnityEngine;
 public class BossManager : MonoBehaviour
 {
     int bossHealth;
+    float testTimer;
     Animator bossAnimator;
     void Start()
     {
-        bossHealth = 100;
+        testTimer = 0;
+        bossHealth = 51;
         bossAnimator = GetComponent<Animator>();
     }
 
 
     void Update()
     {
+        testTimer += Time.deltaTime;
+        if (testTimer > 4)
+            bossHealth = 40;
         print(this.name + " healt: " + bossHealth);
         bossAnimator.SetInteger("bossHealth", bossHealth);
     }

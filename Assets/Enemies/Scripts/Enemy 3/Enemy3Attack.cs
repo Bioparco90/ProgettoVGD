@@ -41,6 +41,4 @@ public class Enemy3Attack : MonoBehaviour
             return;
         Gizmos.DrawWireSphere(hitPoint.position, attackRange);
     }
-
-
 }
