@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 780.8
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,11 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
+<<<<<<< HEAD
   controlID: 101
+=======
+  controlID: 39
+>>>>>>> main
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -171,7 +175,11 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
+<<<<<<< HEAD
   controlID: 102
+=======
+  controlID: 40
+>>>>>>> main
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -618,9 +626,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 5.142542, y: -9.794057, z: -92.63587}
     speed: 2
     m_Value: {x: 5.142542, y: -9.794057, z: -92.63587}
+=======
+    m_Target: {x: 1068.8726, y: 1030.4032, z: -818.9712}
+    speed: 2
+    m_Value: {x: 812.2604, y: 517.2059, z: -274.39886}
+>>>>>>> main
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -666,13 +680,23 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
+<<<<<<< HEAD
     m_Target: {x: -0.010211085, y: -0.9850867, z: 0.06304445, w: -0.15984763}
+=======
+    m_Target: {x: -0.29501852, y: 0.42989406, z: -0.15101092, w: -0.8398527}
+>>>>>>> main
     speed: 2
     m_Value: {x: -0.009971186, y: -0.98516744, z: 0.061565954, w: -0.15986072}
   m_Size:
+<<<<<<< HEAD
     m_Target: 53.013317
     speed: 2
     m_Value: 53.013317
+=======
+    m_Target: 3.906096
+    speed: 2
+    m_Value: 471.3278
+>>>>>>> main
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -733,10 +757,17 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
+<<<<<<< HEAD
       scrollPos: {x: 0, y: 655.2}
       m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: b0b1feffb4b1feff0cb2feff06b4feff10b4feff16b4feff1ab4feff24b4feff2eb4feff38b4feff02b7feff8eb8feff9abdfeff9ebdfeffa4bdfeffa8bdfeffc0bdfeffc6bffeff16c2feffd0cdfeffd4cdfeff26cefeff42defeff400bffffd20dffffa610ffff0a2affff1041ffff4842ffffb042ffff0489ffff42bbffff4ebbffff5abbffff66bbffff72bbffff7ebbffff1ac4ffffbec6ffffcac7ffff88c8ffff8efaffff42820000be820000208300005c8300006c8300000ef40000acf40000
+=======
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: fefaffff
+>>>>>>> main
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: Point Light (5)
@@ -976,9 +1007,15 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: ca790000
     m_LastClickedID: 31178
     m_ExpandedIDs: 00000000c6790000c8790000ca790000cc790000ce790000d0790000d2790000d4790000d679000000ca9a3b
+=======
+    m_SelectedIDs: 26620000
+    m_LastClickedID: 25126
+    m_ExpandedIDs: 000000001062000000ca9a3b
+>>>>>>> main
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1006,7 +1043,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 60}
     m_SelectedIDs: a8a20000
     m_LastClickedID: 41640
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000c6790000c8790000ca790000cc790000ce790000d0790000d2790000d4790000d6790000
+=======
+    m_ExpandedIDs: 0000000010620000
+>>>>>>> main
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
