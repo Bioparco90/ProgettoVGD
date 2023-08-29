@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
-        //hud.UpdateHealthText();
+        hud.UpdateHealthText();
     }
 
     private void MyInput()
