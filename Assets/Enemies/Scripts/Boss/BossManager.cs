@@ -10,16 +10,13 @@ public class BossManager : MonoBehaviour
     void Start()
     {
         testTimer = 0;
-        bossHealth = 51;
+        bossHealth = 1500;
         bossAnimator = GetComponent<Animator>();
     }
 
 
     void Update()
     {
-        testTimer += Time.deltaTime;
-        if (testTimer > 4)
-            bossHealth = 40;
         print(this.name + " healt: " + bossHealth);
         bossAnimator.SetInteger("bossHealth", bossHealth);
     }

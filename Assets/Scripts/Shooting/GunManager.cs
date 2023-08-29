@@ -23,7 +23,7 @@ public class GunManager : MonoBehaviour
     float gunFireRate = 0.5f; //Contiene il tempo che deve passare tra uno sparo e l'altro.
     int gunDamage = 10;
     Vector3 gunIdlePosition = new Vector3(1f, -0.2f, 0.5f);
-    Vector3 gunAimPosition = new Vector3(0f, -0.25f, 1f);
+    Vector3 gunAimPosition = new Vector3(0.75f, -0.30f, 0.7f);
     public ParticleSystem gunMuzzleFlash;
     public AudioSource gunShootSound;
     int maxGunAmmo = 20;
@@ -35,7 +35,7 @@ public class GunManager : MonoBehaviour
     float machineGunFireRate = 0.1f; //Contiene il tempo che deve passare tra uno sparo e l'altro
     int machineGunDamage = 7;
     Vector3 machineGunIdlePosition = new Vector3(0.2f, -0.15f, 0.4f);
-    Vector3 machineGunAimPosition = new Vector3(-0.75f, 0.1f, 0f);
+    Vector3 machineGunAimPosition = new Vector3(0f, -0.15f, 0.4f);
     public ParticleSystem machineGunMuzzleFlash;
     int maxMachineGunAmmo = 50;
     int maxMachineGunClipAmmo = 20;

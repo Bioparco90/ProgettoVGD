@@ -21,6 +21,7 @@ public class BossFlyState : StateMachineBehaviour
         agent = animator.GetComponent<NavMeshAgent>();
         agent.SetDestination(checkpoints[0].position);
         player = GameObject.FindGameObjectWithTag("PlayerCollider").transform;
+        agent.speed = 100;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
