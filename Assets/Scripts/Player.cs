@@ -151,10 +151,11 @@ public class PlayerController : MonoBehaviour
 
     public void takeDamage(int damage)
     {
+        /*
         if (isImmortal)
         {
             damage = 0;
-        }
+        }*/
 
         if (healtPoints - damage <= 0)
         {

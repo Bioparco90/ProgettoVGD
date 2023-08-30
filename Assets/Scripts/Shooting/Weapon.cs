@@ -49,11 +49,13 @@ public class Weapon
             if (hitPoint.transform.GetComponent<EnemyManager>() != null)
             {
                 enemy = hitPoint.transform.GetComponent<EnemyManager>();
+                this.damage = PlayerPrefs.GetString("isImmortal") == "True" ? 20000 : this.damage;
                 enemy.takeDamage(this.damage);
             }
             else if (hitPoint.transform.name == "Boss")
             {
                 boss = hitPoint.transform.GetComponent<BossManager>();
+                this.damage = PlayerPrefs.GetString("isImmortal") == "True" ? 20000 : this.damage;
                 boss.takeDamage(this.damage);
             }
             currentClipAmmo--;
