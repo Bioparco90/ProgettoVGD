@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         healtPoints = 100;
         moveSpeed = 10;
         groundDrag = 4;
-        jumpForce = 5;
+        jumpForce = 10;
         jumpCooldown = 1;
         airMultiplier = 1;
         playerHeight = 2f;
