@@ -11,7 +11,7 @@ public class StartGame : MonoBehaviour
     Transform playerTransform;
     Vector3 levelOneStartPos = new Vector3(-30, 1, -7);
     Vector3 levelTwoStartPos = new Vector3(26, 1, -265);
-    Vector3 levelThreeStartPos = new Vector3(-905, 1, -1040);
+    Vector3 levelThreeStartPos = new Vector3(-1290, 1, -1220);
 
     public Toggle isFullScreenToggle;
     public Toggle isImmortal;
@@ -59,7 +59,7 @@ public class StartGame : MonoBehaviour
 
     private IEnumerator RunAfterSceneLoaded()
     {
-        // Aspetta finché la scena non è completamente caricata
+        // Aspetta finchï¿½ la scena non ï¿½ completamente caricata
         yield return new WaitForEndOfFrame();
 
         // Esegui l'azione dopo il caricamento completo della scena

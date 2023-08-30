@@ -12,7 +12,7 @@ public class HealthCollectible : MonoBehaviour
 
             if (Player.healtPoints < 100)
             {
-                Player.healPlayer(10);
+                Player.healPlayer(50);
 
                 GameObject.Destroy(this.gameObject);
             }

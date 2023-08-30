@@ -10,4 +10,12 @@ public class Portal : MonoBehaviour
         int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(nextScene);
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.transform.tag == "PlayerCollider")
+        {
+            NextLevel();
+        }
+    }
 }

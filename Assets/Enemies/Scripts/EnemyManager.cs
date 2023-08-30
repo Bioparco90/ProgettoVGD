@@ -14,15 +14,15 @@ public class EnemyManager : MonoBehaviour
         switch (this.tag)
         {
             case "Enemy1":
-                enemyHealt = 250;
+                enemyHealt = 150;
                 break;
 
             case "Enemy2":
-                enemyHealt = 400;
+                enemyHealt = 250;
                 break;
 
             case "Enemy3":
-                enemyHealt = 600;
+                enemyHealt = 400;
                 break;
             default:
                 break;

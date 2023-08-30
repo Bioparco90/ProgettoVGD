@@ -44,9 +44,9 @@ public class PlayerController : MonoBehaviour
         bool isLoaded = PlayerPrefs.GetString("LoadedGame") == "True";
 
         healtPoints = 100;
-        moveSpeed = 25;
+        moveSpeed = 10;
         groundDrag = 4;
-        jumpForce = 8;
+        jumpForce = 5;
         jumpCooldown = 1;
         airMultiplier = 1;
         playerHeight = 2f;
@@ -155,6 +155,7 @@ public class PlayerController : MonoBehaviour
         if (healtPoints - damage <= 0)
         {
             healtPoints = 0;
+            SceneManager.LoadScene(5); //Carica la scena di gameover
         }
         else
         {

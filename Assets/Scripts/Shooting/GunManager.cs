@@ -21,24 +21,24 @@ public class GunManager : MonoBehaviour
 
     string gunName = "Pistol";
     float gunFireRate = 0.5f; //Contiene il tempo che deve passare tra uno sparo e l'altro.
-    int gunDamage = 10;
+    int gunDamage = 15;
     Vector3 gunIdlePosition = new Vector3(1f, -0.2f, 0.5f);
     Vector3 gunAimPosition = new Vector3(0.75f, -0.30f, 0.7f);
     public ParticleSystem gunMuzzleFlash;
     public AudioSource gunShootSound;
-    int maxGunAmmo = 20;
+    int maxGunAmmo = 40;
     int maxGunClipAmmo = 10;
     float gunReloadTime = 1f;
     Weapon gun;
 
     string machineGunName = "Machinegun";
     float machineGunFireRate = 0.1f; //Contiene il tempo che deve passare tra uno sparo e l'altro
-    int machineGunDamage = 7;
+    int machineGunDamage = 10;
     Vector3 machineGunIdlePosition = new Vector3(0.2f, -0.15f, 0.4f);
     Vector3 machineGunAimPosition = new Vector3(0f, -0.15f, 0.4f);
     public ParticleSystem machineGunMuzzleFlash;
-    int maxMachineGunAmmo = 50;
-    int maxMachineGunClipAmmo = 20;
+    int maxMachineGunAmmo = 100;
+    int maxMachineGunClipAmmo = 30;
     public AudioSource machineGunShootSound;
     float machineGunReloadTime = 1.3f;
 
@@ -54,7 +54,7 @@ public class GunManager : MonoBehaviour
     int shotGunDamage = 50;
     public ParticleSystem shotGunMuzzleFlash;
     public AudioSource shotGunShootSound;
-    int maxShotGunAmmo = 20;
+    int maxShotGunAmmo = 40;
     int maxShotGunClipAmmo = 5;
     float shotgunReloadTime = 2f;
 

@@ -10,7 +10,7 @@ public class AmmoCollectible : MonoBehaviour
         {
             GunManager gunManager = GameObject.Find("WeaponHolder").GetComponent<GunManager>();
 
-            gunManager.addAmmo(10);
+            gunManager.addAmmo(50);
 
             GameObject.Destroy(this.gameObject);
         }

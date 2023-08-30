@@ -7,7 +7,7 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.3BE40471" = "h: main"
+	"last_search.3BE40471" = ""
 	"OpenInspectorPreview.3BE40471" = "0"
 	"currentGroup.3BE40471" = "all"
 	"last_search.110DEAF1" = "h: ref=<$object:none$>"
@@ -59,9 +59,9 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	""
 	"h: ref=<$object:none$>"
 	"h:"
-	""
 ]
 searchItemFavorites = [
 ]
