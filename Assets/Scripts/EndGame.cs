@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
 {
+    public AudioSource music;
     // Start is called before the first frame update
     void Start()
     {
+        float volume = PlayerPrefs.GetFloat("Volume");
+        music.volume = GetNormalizedVolume(volume);
         StartCoroutine(WaitAndLoadMainMenu());
     }
 
@@ -18,5 +21,10 @@ public class EndGame : MonoBehaviour
 
         // Carica la scena del menu principale
         SceneManager.LoadScene(0);
+    }
+
+    private float GetNormalizedVolume(float volume)
+    {
+        return Mathf.InverseLerp(-80, 0, volume);
     }
 }
