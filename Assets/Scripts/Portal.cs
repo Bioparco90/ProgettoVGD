@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
+    public PlayerController player;
+    public GunManager gunManager;
     public void NextLevel()
     {
         int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
@@ -15,6 +17,7 @@ public class Portal : MonoBehaviour
     {
         if (other.transform.tag == "PlayerCollider")
         {
+            SaveSystem.SavePlayer(player, gunManager);
             NextLevel();
         }
     }

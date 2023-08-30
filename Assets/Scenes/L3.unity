@@ -1870,6 +1870,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048638b6a2e5906408a45b2315919fb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 557666367}
+  gunManager: {fileID: 1922813384}
 --- !u!1 &262741114
 GameObject:
   m_ObjectHideFlags: 0
@@ -14463,7 +14465,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Immortal Mode
+  m_Text: God Mode
 --- !u!222 &1437430524
 CanvasRenderer:
   m_ObjectHideFlags: 0
