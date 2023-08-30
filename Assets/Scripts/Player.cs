@@ -68,6 +68,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (transform.position.y <= -50)
+        {
+            SceneManager.LoadScene(6);
+        }
         if (tmp)
             healtText.SetText("Health: " + healtPoints);
 
@@ -155,7 +159,7 @@ public class PlayerController : MonoBehaviour
         if (healtPoints - damage <= 0)
         {
             healtPoints = 0;
-            SceneManager.LoadScene(5); //Carica la scena di gameover
+            SceneManager.LoadScene(6); //Carica la scena di gameover
         }
         else
         {

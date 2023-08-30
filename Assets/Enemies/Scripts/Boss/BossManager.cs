@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class BossManager : MonoBehaviour
 {
@@ -26,6 +28,7 @@ public class BossManager : MonoBehaviour
         if (bossHealth - damageToTake <= 0)
         {
             Destroy(this.gameObject);
+            SceneManager.LoadScene(5);
         }
         else
         {

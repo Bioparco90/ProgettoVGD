@@ -13,7 +13,7 @@ public class BossFlyState : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        attackRange = 5;
+        attackRange = 100;
         Transform checkpointsObj = GameObject.FindGameObjectWithTag("Checkpoints").transform;
         foreach (Transform t in checkpointsObj)
             checkpoints.Add(t);
