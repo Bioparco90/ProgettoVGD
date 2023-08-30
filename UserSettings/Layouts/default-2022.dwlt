@@ -19,7 +19,11 @@ MonoBehaviour:
     width: 1536
     height: 780.8
   m_ShowMode: 4
+<<<<<<< HEAD
   m_Title: Scene
+=======
+  m_Title: Project
+>>>>>>> main
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -308,10 +312,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 215.2
     y: 73.6
     width: 1102.8
     height: 479
+=======
+    x: -31731
+    y: -31970
+    width: 1169
+    height: 530
+>>>>>>> main
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -733,10 +744,17 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
+<<<<<<< HEAD
       scrollPos: {x: 0, y: 191.20001}
       m_SelectedIDs: aa83ffff
       m_LastClickedID: -31830
       m_ExpandedIDs: d6c8ffff28faffff
+=======
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: ce1e0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: b85ffffffaa1ffffd0bbffff84ecffff22efffff66effffffefaffff54610000826f0000028700006c8f00000095000038b5000080b50000
+>>>>>>> main
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -935,10 +953,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 215.2
     y: 573.60004
     width: 1102.8
     height: 209.79999
+=======
+    x: -31731
+    y: -31419
+    width: 1169
+    height: 367
+>>>>>>> main
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -962,23 +987,37 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets
+=======
+    - Assets/Scripts/Hud
+>>>>>>> main
     m_Globs: []
     m_OriginalText: l3
     m_ImportLogFlags: 0
   m_ViewMode: 1
   m_StartGridSize: 82
   m_LastFolders:
+<<<<<<< HEAD
   - Assets
+=======
+  - Assets/Scripts/Hud
+>>>>>>> main
   m_LastFoldersGridSize: 82
   m_LastProjectPath: C:\ProgettoVGD
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: 2e7c0000
     m_LastClickedID: 31790
     m_ExpandedIDs: 000000002a7c00002c7c00002e7c0000307c0000327c0000347c0000367c0000387c00003a7c000000ca9a3b
+=======
+    m_SelectedIDs: 58b80000
+    m_LastClickedID: 47192
+    m_ExpandedIDs: 000000008c6e0000ac6e000000ca9a3b
+>>>>>>> main
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
