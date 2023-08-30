@@ -7,6 +7,8 @@ public class MainMenuScript : MonoBehaviour
     public AudioSource music;
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         Screen.fullScreen = PlayerPrefs.GetString("isFullscreen") == "True";
         float volume = PlayerPrefs.GetFloat("Volume");
         music.volume = GetNormalizedVolume(volume);

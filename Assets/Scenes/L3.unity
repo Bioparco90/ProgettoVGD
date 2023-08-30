@@ -20286,6 +20286,7 @@ GameObject:
   - component: {fileID: 2037134368}
   - component: {fileID: 2037134370}
   - component: {fileID: 2037134369}
+  - component: {fileID: 2037134371}
   m_Layer: 0
   m_Name: Wall_Door_01 (1)
   m_TagString: Untagged
@@ -20358,6 +20359,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2037134367}
   m_Mesh: {fileID: 4300000, guid: 5883a11a87fc04b2b8819302a5cad155, type: 3}
+--- !u!65 &2037134371
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037134367}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.999979, y: 2.0000021, z: 0}
+  m_Center: {x: 3.0000007, y: -0.9999992, z: 0.0000038444996}
 --- !u!1 &2038364463
 GameObject:
   m_ObjectHideFlags: 0

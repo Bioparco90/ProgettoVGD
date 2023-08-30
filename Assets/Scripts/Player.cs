@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         bool isLoaded = PlayerPrefs.GetString("LoadedGame") == "True";
 
         healtPoints = 100;
-        moveSpeed = 10;
+        moveSpeed = 20;
         groundDrag = 4;
         jumpForce = 10;
         jumpCooldown = 1;
