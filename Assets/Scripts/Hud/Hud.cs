@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Hud : MonoBehaviour
@@ -11,6 +12,27 @@ public class Hud : MonoBehaviour
     public Image weaponImage;
     public Sprite[] sprites;
     public PlayerController player;
+
+    private BossManager bossObject;
+    private TextMeshProUGUI bossHealthText;
+
+    private void Awake()
+    {
+        // Verifica se sei nella scena "Lboss" e poi carica il GameObject "Boss"
+        if (SceneManager.GetActiveScene().name == "LBoss")
+        {
+            bossObject = FindObjectOfType<BossManager>(); // Assumi che il GameObject abbia il nome "Boss"
+            if (bossObject == null)
+            {
+                Debug.LogWarning("Boss GameObject not found in scene 'Lboss'. Make sure to assign it manually.");
+            }
+            GameObject bossHealthObject = GameObject.FindGameObjectWithTag("BossHealthCounter");
+            if (bossHealthObject != null)
+            {
+                bossHealthText = bossHealthObject.GetComponent<TextMeshProUGUI>();
+            }
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -39,5 +61,10 @@ public class Hud : MonoBehaviour
     public void UpdateHealthText()
     {
         healthText.text = player.healtPoints.ToString();
+    }
+
+    public void UpdateHealthBossText()
+    {
+        bossHealthText.text = bossObject.bossHealth.ToString();
     }
 }

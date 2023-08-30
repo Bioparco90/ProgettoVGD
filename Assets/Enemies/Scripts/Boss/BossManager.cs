@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class BossManager : MonoBehaviour
 {
-    int bossHealth;
+    public Hud hud;
+    public int bossHealth;
     float testTimer;
     Animator bossAnimator;
     void Start()
@@ -21,6 +22,7 @@ public class BossManager : MonoBehaviour
     {
         print(this.name + " healt: " + bossHealth);
         bossAnimator.SetInteger("bossHealth", bossHealth);
+        hud.UpdateHealthBossText();
     }
 
     public void takeDamage(int damageToTake)
