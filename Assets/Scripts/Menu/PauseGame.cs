@@ -23,7 +23,7 @@ public class PauseGame : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
-
+    /*
     // Le due funzioni seguenti gestiscono il reset del focus dei bottoni (rimanevano selezionati anche dopo l'uscita dal menu)
     private void OnEnable()
     {
@@ -35,5 +35,5 @@ public class PauseGame : MonoBehaviour
     {
         // Quando il menu di pausa viene disattivato, reimposta lo stato dei bottoni
         EventSystem.current.SetSelectedGameObject(null); // Rimuovi il focus da qualsiasi oggetto
-    }
+    }*/
 }
