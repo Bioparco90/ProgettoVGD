@@ -58,6 +58,9 @@ public class Weapon
             }
             currentClipAmmo--;
             shootSound.Play();
+        } else
+        {
+            Debug.Log("Shoot probelm here");
         }
     }
 

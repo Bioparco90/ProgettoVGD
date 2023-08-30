@@ -26,6 +26,7 @@ public class Hud : MonoBehaviour
             {
                 Debug.LogWarning("Boss GameObject not found in scene 'Lboss'. Make sure to assign it manually.");
             }
+            
             GameObject bossHealthObject = GameObject.FindGameObjectWithTag("BossHealthCounter");
             if (bossHealthObject != null)
             {
