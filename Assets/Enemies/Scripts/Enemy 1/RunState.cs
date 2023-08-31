@@ -8,7 +8,7 @@ public class RunState : StateMachineBehaviour
     NavMeshAgent agent;
     Transform player;
     float runRange = 10;
-    float attackRange = 5;
+    float attackRange = 15;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
