@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 11587300}
   - component: {fileID: 11587302}
   - component: {fileID: 11587301}
+  - component: {fileID: 11587303}
   m_Layer: 0
   m_Name: Wall_Door_01 (1)
   m_TagString: Untagged
@@ -283,6 +284,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11587299}
   m_Mesh: {fileID: 4300000, guid: 5883a11a87fc04b2b8819302a5cad155, type: 3}
+--- !u!65 &11587303
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11587299}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10.000004, y: 2.0000024, z: 0}
+  m_Center: {x: 3.0000324, y: -0.99999964, z: -0.0000004172323}
 --- !u!1 &16912784
 GameObject:
   m_ObjectHideFlags: 0
@@ -4805,7 +4827,7 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 671895783}
     - targetCorrespondingSourceObject: {fileID: 4852321716897340, guid: 4694d625f5bfc4a2088994277336ad92, type: 3}
-      insertIndex: -1
+      insertIndex: 0
       addedObject: {fileID: 11587300}
     - targetCorrespondingSourceObject: {fileID: 4852321716897340, guid: 4694d625f5bfc4a2088994277336ad92, type: 3}
       insertIndex: -1
@@ -15072,8 +15094,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 9.999979, y: 1.5133377, z: 0.71482396}
-  m_Center: {x: 3.0000007, y: -1.2433316, z: -0.20705421}
+  m_Size: {x: 9.999979, y: 1.5133376, z: 0.5793782}
+  m_Center: {x: 3.0000007, y: -1.2433316, z: -0.27477717}
 --- !u!1001 &1303874620
 PrefabInstance:
   m_ObjectHideFlags: 0
